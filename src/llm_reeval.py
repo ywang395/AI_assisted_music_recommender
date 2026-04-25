@@ -200,16 +200,7 @@ def deterministic_update(
     changes: dict = {}
 
     # ── Numeric fields: nudge toward mean of positive events ──────────────────
-    field_to_song_key = {
-        "target_energy":          "song_energy",
-        "target_danceability":    None,   # not in event — skip
-        "target_valence":         None,
-        "target_live_energy":     None,
-        "target_lyrical_depth":   None,
-        "target_instrumentalness": None,
-        "desired_popularity":     None,
-    }
-    # Energy is the only numeric carried in InteractionEvent; others use genre proxy
+    # Only energy and tempo are carried in InteractionEvent; others need genre proxy
     if positive:
         mean_energy = sum(e["song_energy"] for e in positive) / len(positive)
         current = stable.target_energy

@@ -1,81 +1,50 @@
-id,title,artist,genre,mood,energy,tempo_bpm,valence,danceability,acousticness,popularity,release_decade,mood_tags,live_energy,lyrical_depth,instrumentalness
-1,Sunrise City,Neon Echo,pop,happy,0.82,118,0.84,0.79,0.18,86,2010,upbeat|bright|anthemic,0.74,0.42,0.12
-2,Midnight Coding,LoRoom,lofi,chill,0.42,78,0.56,0.62,0.71,68,2020,calm|focus|introspective,0.28,0.64,0.78
-3,Storm Runner,Voltline,rock,intense,0.91,152,0.48,0.66,0.10,74,2000,aggressive|driving|powerful,0.92,0.35,0.18
-4,Library Rain,Paper Lanterns,lofi,chill,0.35,72,0.60,0.58,0.86,61,2010,soft|reflective|quiet,0.20,0.71,0.83
-5,Gym Hero,Max Pulse,pop,intense,0.93,132,0.77,0.88,0.05,93,2010,high-energy|motivational|anthemic,0.97,0.22,0.08
-6,Spacewalk Thoughts,Orbit Bloom,ambient,chill,0.28,60,0.65,0.41,0.92,52,2020,spacious|drifting|meditative,0.15,0.58,0.90
-7,Coffee Shop Stories,Slow Stereo,jazz,relaxed,0.37,90,0.71,0.54,0.89,57,1990,warm|smooth|acoustic,0.24,0.77,0.66
-8,Night Drive Loop,Neon Echo,synthwave,moody,0.75,110,0.49,0.73,0.22,79,1980,nostalgic|neon|cinematic,0.63,0.31,0.26
-9,Focus Flow,LoRoom,lofi,focused,0.40,80,0.59,0.60,0.78,65,2020,study|calm|minimal,0.22,0.69,0.81
-10,Rooftop Lights,Indigo Parade,indie pop,happy,0.76,124,0.81,0.82,0.35,83,2010,bright|warm|singalong,0.70,0.48,0.21
-11,Desert Mirage,Sandswell,country,melancholic,0.55,94,0.42,0.65,0.74,54,2000,storytelling|nostalgic|dusty,0.41,0.80,0.72
-12,Neon Jungle,Bass Theory,electronic,energetic,0.88,140,0.68,0.91,0.06,88,2010,pulsing|club|futuristic,0.95,0.18,0.10
-13,Ember & Ash,Hollow Oak,folk,sad,0.31,67,0.28,0.38,0.93,49,2000,acoustic|somber|intimate,0.18,0.86,0.88
-14,Iron Throne,Vortex Kings,metal,angry,0.97,180,0.22,0.55,0.03,91,2000,aggressive|heavy|chaotic,0.98,0.20,0.05
-15,Salsa Fuerte,Ritmo Caliente,latin,joyful,0.85,105,0.90,0.94,0.12,84,2010,festive|dance|colorful,0.88,0.33,0.09
-16,Still Waters,Pale Shore,classical,peaceful,0.18,52,0.73,0.22,0.98,46,1800,orchestral|gentle|serene,0.10,0.74,0.97
-17,Broken Compass,The Wayfarers,blues,nostalgic,0.48,88,0.35,0.49,0.81,58,1960,roadtrip|weathered|soulful,0.39,0.89,0.63
-18,Fractured Light,Prism Wave,r&b,romantic,0.63,96,0.77,0.76,0.44,71,1990,smooth|lush|late-night,0.58,0.67,0.34
-19,Battlecry,Iron Dawn,hip-hop,motivated,0.80,98,0.61,0.85,0.09,89,2010,competitive|bold|urban,0.86,0.41,0.15
-20,Twilight Waltz,Echo Strings,classical,dreamy,0.22,58,0.80,0.30,0.96,44,1800,delicate|floating|orchestral,0.12,0.62,0.95
-21,Golden Hour,The Sunsets,pop,romantic,0.71,108,0.88,0.75,0.28,80,2010,warm|dreamy|summer,0.65,0.50,0.18
-22,Static Hearts,Neon Echo,pop,melancholic,0.60,104,0.42,0.68,0.22,77,2000,reflective|bittersweet|wistful,0.55,0.62,0.20
-23,Paper Planes,Coastal Drift,pop,chill,0.55,100,0.72,0.70,0.40,72,2010,easygoing|laid-back|coastal,0.48,0.45,0.22
-24,Daydream Machine,Velvet Static,indie pop,dreamy,0.58,96,0.76,0.66,0.52,70,2010,hazy|psychedelic|warm,0.50,0.58,0.30
-25,Last Train Home,Hollow Bells,indie pop,melancholic,0.50,88,0.38,0.55,0.60,64,2000,longing|quiet|introspective,0.42,0.72,0.38
-26,Neon Bloom,Prism Wave,indie pop,joyful,0.72,116,0.85,0.80,0.30,78,2020,bright|danceable|uplifting,0.68,0.40,0.15
-27,Rainy Season,LoRoom,lofi,peaceful,0.30,68,0.62,0.55,0.88,60,2020,rain|gentle|background,0.18,0.70,0.85
-28,Warm Static,Paper Lanterns,lofi,relaxed,0.33,74,0.58,0.52,0.82,58,2020,mellow|ambient|late-night,0.20,0.65,0.80
-29,Dusty Record,Vinyl Haze,lofi,nostalgic,0.38,76,0.65,0.60,0.80,55,2010,retro|cozy|warm,0.25,0.68,0.77
-30,Signal Lost,Gridlock,rock,moody,0.78,138,0.40,0.62,0.15,76,2000,dark|driving|cinematic,0.82,0.48,0.22
-31,Open Road,The Wayfarers,rock,energetic,0.85,144,0.68,0.70,0.18,80,1990,anthemic|road|freedom,0.88,0.38,0.16
-32,Glass Ceilings,Faultline,rock,intense,0.88,156,0.35,0.60,0.08,71,2010,aggressive|raw|cathartic,0.90,0.42,0.14
-33,Echo Chamber,Orbit Bloom,ambient,meditative,0.20,55,0.70,0.30,0.95,48,2020,deep|resonant|still,0.08,0.60,0.96
-34,Tidal Drift,Pale Shore,ambient,peaceful,0.18,50,0.75,0.25,0.97,44,2010,oceanic|serene|floating,0.06,0.55,0.97
-35,Void Garden,Subwave,ambient,dreamy,0.25,58,0.68,0.35,0.93,50,2020,dark|textural|cinematic,0.12,0.50,0.94
-36,Late Night Jam,Blue Note Society,jazz,relaxed,0.42,95,0.74,0.60,0.85,60,1970,smoky|intimate|cool,0.35,0.80,0.60
-37,Bebop City,Brass & Ivory,jazz,joyful,0.65,180,0.80,0.72,0.78,65,1950,lively|complex|swinging,0.72,0.88,0.55
-38,Moonlight Sax,Solo Reed,jazz,romantic,0.38,80,0.82,0.45,0.90,54,1960,sensual|slow|expressive,0.28,0.82,0.70
-39,Retrowave Runner,Neon Echo,synthwave,energetic,0.80,118,0.62,0.80,0.18,82,1980,neon|retro|action,0.78,0.28,0.20
-40,Cyber Dawn,Gridlock,synthwave,intense,0.85,130,0.50,0.78,0.10,85,1980,futuristic|dark|pulsing,0.82,0.22,0.12
-41,Velvet Vice,Orbit Bloom,synthwave,moody,0.68,105,0.44,0.70,0.25,74,1980,cinematic|noir|brooding,0.60,0.38,0.28
-42,Heartland,Prairie Sound,country,nostalgic,0.52,96,0.68,0.62,0.80,62,1990,americana|open-road|warm,0.48,0.82,0.68
-43,Honky Tonk Moon,Sandswell,country,joyful,0.70,108,0.85,0.78,0.70,66,1980,danceable|twang|festive,0.72,0.70,0.55
-44,Whiskey Rivers,The Wayfarers,country,melancholic,0.45,88,0.32,0.50,0.85,55,2000,storytelling|loss|acoustic,0.38,0.88,0.72
-45,Bass Cannon,Bass Theory,electronic,energetic,0.95,150,0.65,0.95,0.04,90,2020,club|heavy|rave,0.98,0.10,0.05
-46,Polyrhythm Palace,Circuit Mind,electronic,focused,0.72,128,0.60,0.85,0.08,78,2010,complex|technical|headphones,0.75,0.32,0.30
-47,Sunset Protocol,Coastal Drift,electronic,chill,0.55,110,0.72,0.74,0.20,73,2010,downtempo|warm|drifting,0.48,0.35,0.35
-48,Forest Path,Hollow Oak,folk,peaceful,0.28,70,0.74,0.38,0.95,50,2000,acoustic|nature|gentle,0.20,0.84,0.86
-49,River Song,Paper Lanterns,folk,nostalgic,0.35,80,0.65,0.44,0.90,52,1970,storytelling|campfire|earthy,0.28,0.90,0.80
-50,Wildflower,Solo Reed,folk,happy,0.48,92,0.80,0.55,0.88,57,1980,uplifting|spring|community,0.40,0.78,0.74
-51,Throne of Thorns,Vortex Kings,metal,angry,0.96,175,0.18,0.52,0.04,88,2010,brutal|technical|relentless,0.97,0.28,0.08
-52,Frozen Kingdom,Iron Dawn,metal,intense,0.93,168,0.30,0.58,0.06,85,2000,epic|melodic|powerful,0.94,0.35,0.10
-53,Ashes Rise,Faultline,metal,melancholic,0.82,155,0.35,0.50,0.08,76,2010,doom|atmospheric|heavy,0.85,0.50,0.12
-54,Cumbia Caliente,Ritmo Caliente,latin,joyful,0.82,115,0.88,0.90,0.15,82,2000,festive|tropical|dance,0.85,0.30,0.10
-55,Reggaeton Noche,Bajo El Sol,latin,energetic,0.88,95,0.78,0.92,0.08,87,2010,party|urban|hot,0.90,0.22,0.08
-56,Bossa Nova Breeze,Rio Strings,latin,relaxed,0.40,112,0.82,0.60,0.82,60,1960,smooth|tropical|intimate,0.30,0.72,0.65
-57,Concerto in Blue,Echo Strings,classical,focused,0.35,76,0.65,0.28,0.98,52,1900,orchestral|complex|emotive,0.22,0.80,0.96
-58,String Quartet No. 4,Pale Shore,classical,melancholic,0.25,62,0.40,0.20,0.99,46,1800,chamber|introspective|delicate,0.14,0.72,0.98
-59,Prelude in Storm,Brass & Ivory,classical,intense,0.60,144,0.45,0.35,0.96,55,1850,dramatic|dynamic|grand,0.42,0.68,0.97
-60,Delta Blues,Blue Note Society,blues,nostalgic,0.52,84,0.38,0.55,0.86,58,1940,raw|soulful|regional,0.48,0.92,0.65
-61,Chicago Nights,Hollow Bells,blues,moody,0.58,92,0.42,0.60,0.80,62,1960,urban|electric|gritty,0.55,0.86,0.55
-62,Crossroads,The Wayfarers,blues,sad,0.44,76,0.28,0.48,0.88,54,1950,acoustic|lament|spiritual,0.38,0.90,0.72
-63,Silk & Soul,Prism Wave,r&b,romantic,0.60,94,0.82,0.74,0.50,75,2000,sensual|lush|smooth,0.52,0.70,0.30
-64,Midnight Confessions,Velvet Static,r&b,moody,0.55,88,0.58,0.68,0.42,70,1990,dark|late-night|emotional,0.48,0.75,0.32
-65,Higher Ground,Bass Theory,r&b,motivated,0.75,102,0.72,0.80,0.22,80,2010,empowering|soulful|groove,0.70,0.60,0.18
-66,Street Anthem,Iron Dawn,hip-hop,motivated,0.82,96,0.65,0.88,0.10,88,2010,bold|urban|confident,0.85,0.48,0.12
-67,Late Night Cipher,Circuit Mind,hip-hop,focused,0.62,90,0.50,0.78,0.15,78,2020,lyrical|underground|introspective,0.58,0.72,0.18
-68,Gold Chains,Bajo El Sol,hip-hop,energetic,0.85,100,0.75,0.90,0.06,91,2000,party|swagger|loud,0.88,0.35,0.08
-69,Daydream Pop,Indigo Parade,pop,happy,0.74,112,0.86,0.76,0.32,81,2020,summery|light|carefree,0.68,0.44,0.16
-70,Electric Feel,Coastal Drift,pop,energetic,0.86,120,0.80,0.84,0.12,90,2010,danceable|bright|feel-good,0.80,0.36,0.10
-71,Fading Signal,Hollow Bells,indie pop,melancholic,0.52,92,0.36,0.58,0.55,66,2000,quiet|introspective|dusk,0.44,0.68,0.35
-72,Bloom Season,Velvet Static,indie pop,happy,0.68,110,0.82,0.75,0.38,74,2020,fresh|joyful|indie,0.62,0.46,0.22
-73,Slow Burn,Solo Reed,lofi,chill,0.28,66,0.60,0.50,0.84,56,2020,late-night|mellow|introspective,0.16,0.66,0.82
-74,City Rain,Vinyl Haze,lofi,peaceful,0.32,70,0.64,0.54,0.86,59,2010,urban|rain|soft,0.18,0.72,0.84
-75,Afterglow,Orbit Bloom,ambient,relaxed,0.22,54,0.72,0.28,0.96,47,2020,warm|glowing|slow,0.10,0.52,0.95
-76,Mountain Echo,Prairie Sound,folk,peaceful,0.30,74,0.70,0.40,0.92,51,1990,nature|open|serene,0.22,0.82,0.82
-77,Uprising,Max Pulse,rock,motivated,0.90,148,0.72,0.68,0.10,83,2010,anthemic|powerful|stadium,0.92,0.36,0.14
-78,Jungle Groove,Ritmo Caliente,electronic,energetic,0.90,135,0.70,0.92,0.06,86,2010,tribal|club|driving,0.92,0.20,0.08
-79,Velvet Underground,Blue Note Society,jazz,moody,0.45,88,0.50,0.58,0.82,62,1970,dark|cool|late-night,0.38,0.84,0.60
-80,Neon Cathedral,Gridlock,synthwave,dreamy,0.65,102,0.58,0.72,0.28,76,1980,cinematic|vast|melancholy,0.58,0.44,0.25
+id,title,artist,genre,mood,energy,tempo_bpm,valence,danceability,acousticness,popularity,release_decade,mood_tags,live_energy,lyrical_depth,instrumentalness,spotify_id
+1,Koh Yae Kwat Lat,Ye' Lay,pop,energetic,0.75,120,0.65,0.7,0.1,50,2000,upbeat|dynamic|catchy,0.8,0.6,0.05,2PP2TjpuKkCijScLBeZ03J
+2,Chit Nay Yin Nae,X-Boxin,hip-hop,motivated,0.68,130,0.55,0.75,0.2,50,2010,driving|upbeat|inspiring,0.7,0.5,0.02,42HfpOwW9561SgtGnXSIhl
+3,A Mhaung Sone Naye,NJ,lofi,chill,0.6,110,0.5,0.65,0.15,50,2020,smooth|relaxed|melodic,0.6,0.55,0.01,4D8eA0rMKlarDcDXRt0KbF
+4,Radio,G Fatt,pop,joyful,0.8,140,0.7,0.85,0.05,50,2020,party|fun|upbeat,0.9,0.4,0.0,6rcoMH9JA7KhhgCrHqtjLQ
+5,Moe,Ye' Lay,pop,energetic,0.72,125,0.6,0.7,0.12,50,2020,catchy|danceable|vibrant,0.75,0.65,0.03,1PoWcYcbxVpEjSd6OEQOsn
+6,Saturday,Hlwan Paing,pop,joyful,0.85,135,0.75,0.8,0.08,50,2010,celebration|upbeat|festive,0.88,0.45,0.01,5HJ8H5f9GCMRiPxmN0HbgX
+7,Chit Tal Hote?,Bunny Phyoe,lofi,relaxed,0.65,115,0.55,0.6,0.18,50,2010,smooth|easygoing|melodic,0.65,0.5,0.02,6yUSlgnntsnwKyYHKaVhIw
+8,နားလည်ပါ - Reanimation,Big Bag,pop,motivated,0.7,128,0.6,0.75,0.1,50,2020,upbeat|inspiring|dynamic,0.78,0.55,0.0,6kp621KQbquyTFpGv03cUK
+9,Bar Lo Nay Thay Lal,IDIOTS,lofi,chill,0.55,100,0.45,0.5,0.25,50,2010,laid-back|smooth|easygoing,0.5,0.4,0.01,6bM3ZUu26FPkawicS9zyQQ
+10,Tho,Shwe Htoo,lofi,relaxed,0.6,120,0.5,0.55,0.2,50,2010,calm|smooth|melodic,0.55,0.45,0.02,0dALHcwbHZNWVJTe01kqgc
+11,A Thet Thwin Pay Par,Hlwan Paing,pop,energetic,0.78,130,0.68,0.82,0.12,50,2010,upbeat|dynamic|catchy,0.85,0.6,0.01,5EkqEUqNeCHTdhgJnnFrsg
+12,Saung Twin Nway,The Zero,lofi,chill,0.62,115,0.58,0.65,0.15,50,2010,smooth|easygoing|melodic,0.6,0.5,0.03,33EA4OCTg8w11oHM4Rtzcb
+13,A Lwan Pyay A Nann - 2022 ver.,Bunny Phyoe,pop,joyful,0.7,125,0.65,0.75,0.1,50,2020,upbeat|catchy|danceable,0.72,0.55,0.02,4PBPuBFe840CYu8p9MpR8W
+14,Ya Par Tal Htwat Thwar Par,Yair Yint Aung,pop,motivated,0.64,118,0.6,0.7,0.12,50,2010,inspiring|upbeat|dynamic,0.68,0.5,0.01,2S7XnRnTVlwt6GGkDTpSm0
+15,Min Shi Tae Myoe,Myo Gyi,lofi,chill,0.58,105,0.5,0.55,0.2,50,2010,smooth|relaxed|melodic,0.55,0.45,0.02,5VmfjaGvt56uiBeMYKoNAq
+16,A Pyit Ma Shi Khae,Hlwan Paing,pop,energetic,0.74,130,0.66,0.78,0.09,50,2010,upbeat|dynamic|catchy,0.8,0.55,0.01,4Xi1RKnEMXwOdIJRwZmMwD
+17,Nghat,G Fatt,pop,joyful,0.77,135,0.7,0.8,0.06,50,2020,upbeat|fun|danceable,0.85,0.5,0.0,0QfOGDDMIwKo1LTA5BdDc0
+18,Cherry,Doublej,lofi,relaxed,0.65,120,0.55,0.7,0.15,50,2020,smooth|easygoing|melodic,0.65,0.5,0.02,1QOWfc0W7B89AT9PqpijYp
+19,A Tate,Bunny Phyoe,pop,joyful,0.7,130,0.65,0.75,0.1,50,2010,upbeat|catchy|danceable,0.72,0.55,0.02,58iWqoPlw9oYUBXUgmXvFR
+20,Su Latt,IDIOTS,lofi,chill,0.6,110,0.5,0.55,0.2,50,2010,smooth|relaxed|melodic,0.55,0.45,0.01,2tb7RFEioBbA6UDJeTwqwr
+21,Thu Nge Chin Thot Pay Sar,Hlwan Paing,pop,energetic,0.75,125,0.7,0.8,0.08,50,2010,upbeat|dynamic|catchy,0.8,0.55,0.01,4i5UBpTVjVSBOxnPQ02bC3
+22,Lann Ma Gyi Yae Bayy,Wyne Su Khaing Thein,lofi,chill,0.65,115,0.55,0.6,0.15,50,2000,smooth|easygoing|melodic,0.65,0.5,0.02,3VA4sj78WwnMUIvS4XK0Bz
+23,Sabel Phyu Lay Nae Twae Tae Nout,G Fatt,pop,joyful,0.8,140,0.75,0.85,0.05,50,2020,party|fun|upbeat,0.9,0.4,0.0,28zt7bSuS4sRe9VPQNJcWD
+24,A Mhat Ta Mae,Doublej,pop,joyful,0.7,130,0.65,0.75,0.1,50,2020,upbeat|catchy|danceable,0.72,0.55,0.02,7cxBXWPketbRaFbloRya1T
+25,Castle In The Air,Bunny Phyoe,lofi,relaxed,0.65,120,0.55,0.7,0.15,50,2010,smooth|easygoing|melodic,0.65,0.5,0.02,4P3JKWxlrEyuBBJCqLDQj3
+26,A Phyae Khan,Hlwan Paing,pop,energetic,0.78,135,0.68,0.82,0.09,50,2020,upbeat|dynamic|catchy,0.8,0.55,0.01,5QNnL7qAgtM2jrmndwLPfr
+27,Min Nae Nee Pho,IDIOTS,lofi,chill,0.6,110,0.5,0.55,0.2,50,2010,smooth|relaxed|melodic,0.55,0.45,0.01,2rGL42vEFVRDqhwzvv1Ixt
+28,Hurt (feat. Jessica Parry),X-Boxin,hip-hop,sad,0.5,90,0.4,0.45,0.3,50,2010,emotional|reflective|melancholic,0.5,0.7,0.05,554tKUz2GyR3etdg34MeD6
+29,Waiting For You,Yair Yint Aung,lofi,chill,0.62,115,0.58,0.65,0.15,50,2020,smooth|easygoing|melodic,0.6,0.5,0.02,4a2B38J4HZLV0gQLXzW99l
+30,A Lwan a Htar,Sai Sai Kham Leng,pop,joyful,0.7,130,0.65,0.75,0.1,50,2010,upbeat|catchy|danceable,0.72,0.55,0.02,413wNgDDUP9HozJpoyRc4v
+31,A Nar Nar Bay Mhar,Hlwan Paing,pop,energetic,0.75,125,0.7,0.8,0.08,50,2010,upbeat|dynamic|catchy,0.8,0.55,0.01,3LLMBRtzTnxOiq8cl499GV
+32,Eain Met Yae A Thet,Bunny Phyoe,pop,motivated,0.68,128,0.6,0.75,0.1,50,2020,inspiring|upbeat|dynamic,0.7,0.55,0.02,46D3Luru5sb8ubCysvP3t7
+33,Last December,Doublej,lofi,sad,0.55,105,0.45,0.5,0.25,50,2020,reflective|melancholic|emotional,0.5,0.4,0.01,7F85pUDEt84zMzJwdTFMBx
+34,Ta Khar Phwit Hter Par Tal,Shwe Htoo,lofi,chill,0.6,120,0.5,0.55,0.2,50,2010,smooth|relaxed|melodic,0.55,0.45,0.01,2IYuwOoFx6LCt2JyXsBVSq
+35,လမ်းမှာမျက်နှာချင်းဆိုင်,Yair Yint Aung,lofi,chill,0.65,115,0.55,0.6,0.15,50,2020,smooth|easygoing|melodic,0.65,0.5,0.02,19Ho4hS57C7lafhX8z6TTU
+36,Nhin,Hlwan Paing,pop,joyful,0.7,130,0.65,0.75,0.1,50,2010,upbeat|catchy|danceable,0.72,0.55,0.02,2a1T2EoM9ooUFQp1KGVO83
+37,Twae Ya Tar Wan Thar Tal,IDIOTS,lofi,chill,0.6,110,0.5,0.55,0.2,50,2010,smooth|relaxed|melodic,0.55,0.45,0.01,4aZGkIz3H7B1gkSk2Fzsau
+38,Kaung Lay Ta Youk Yae Kaung Ma Lay,Bunny Phyoe,pop,energetic,0.72,125,0.67,0.76,0.09,50,2010,upbeat|dynamic|catchy,0.75,0.55,0.01,0sj9wv4Nh3TA6O9kzW8QLL
+39,Gipsy,Doublej,lofi,relaxed,0.65,120,0.55,0.7,0.15,50,2020,smooth|easygoing|melodic,0.65,0.5,0.02,0cjbY6UjtRDXfwPH5V0YSi
+40,ခမ်းနားလွန်းတဲ့နေ့,Doublej,lofi,chill,0.6,110,0.5,0.55,0.2,50,2020,smooth|relaxed|melodic,0.55,0.45,0.01,2rrFYCcdZ3bO0leT0VpiQL
+41,Sate Kuu Yin Sar Oat,Shwe Htoo,pop,energetic,0.75,135,0.7,0.8,0.08,50,2010,upbeat|dynamic|catchy,0.8,0.55,0.01,7AFTYJiwAJY0On5d1tLyP3
+42,Mhyaw Nay Myal Saung,Hlwan Paing,pop,motivated,0.68,128,0.6,0.75,0.1,50,2020,inspiring|upbeat|dynamic,0.7,0.55,0.02,159iBUk3emJnBBler4dCuQ
+43,Chit Tine Lal Ma Nyar,Hlwan Paing,lofi,chill,0.6,110,0.5,0.55,0.2,50,2020,smooth|relaxed|melodic,0.55,0.45,0.01,3ugUJj7WsKCYqITh6aC2BK
+44,Tain Tike Kabyar,Doublej,lofi,relaxed,0.65,120,0.55,0.7,0.15,50,2020,smooth|easygoing|melodic,0.65,0.5,0.02,0HJYamV6dL7sW1biPkLXtF
+45,Chan Khae,IDIOTS,lofi,chill,0.6,110,0.5,0.55,0.2,50,2010,smooth|relaxed|melodic,0.55,0.45,0.01,5FRybOz9nnOxb5L3nByyVI
+46,K,IDIOTS,lofi,sad,0.55,100,0.45,0.5,0.25,50,2020,reflective|melancholic|emotional,0.5,0.4,0.01,3e2NL4bwV9Bs3o3bxM2oOd
+47,Eain Pyan Chain,Doublej,pop,joyful,0.7,130,0.65,0.75,0.1,50,2020,upbeat|catchy|danceable,0.72,0.55,0.02,3E1mvSCHd8rNkb3E5KQ8TY
+48,Don't Lose Sleep,X-Boxin,hip-hop,sad,0.5,90,0.4,0.45,0.3,50,2010,emotional|reflective|melancholic,0.5,0.7,0.05,1kBM7GJhhzkMV7nXR26wKZ
+49,You & I,One Direction,pop,happy,0.75,120,0.85,0.7,0.3,50,2010,uplifting|romantic|catchy,0.8,0.6,0.0,2afCBiru10AFckfOa49wIa

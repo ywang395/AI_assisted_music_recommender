@@ -3,3 +3,4 @@ pytest
 streamlit
 openai
 python-dotenv
+spotipy

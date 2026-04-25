@@ -8,6 +8,7 @@ import textwrap
 
 sys.path.insert(0, os.path.dirname(__file__))
 from recommender import SCORING_MODES, load_songs, recommend_songs
+from src.config import HISTORY_JSONL, SONGS_CSV, USER_PROFILE_JSON
 
 
 def _truncate(text: str, width: int) -> str:
@@ -115,9 +116,9 @@ def _top_titles(stable, songs, k: int = 5):
 def _run_profile_sync_preview(apply_changes: bool) -> int:
     from src.llm_reeval import load_profile, save_profile, update_profile_at_session_end
 
-    songs = load_songs("data/songs.csv")
-    stable = load_profile("data/user_profile.json") or _default_stable_profile()
-    new_stable, reason = update_profile_at_session_end("data/history.jsonl", stable)
+    songs = load_songs(SONGS_CSV)
+    stable = load_profile(USER_PROFILE_JSON) or _default_stable_profile()
+    new_stable, reason = update_profile_at_session_end(HISTORY_JSONL, stable)
 
     print("\n" + "=" * 88)
     print("PROFILE SYNC PREVIEW")
@@ -137,8 +138,8 @@ def _run_profile_sync_preview(apply_changes: bool) -> int:
 
     if apply_changes:
         if new_stable.version != stable.version:
-            save_profile(new_stable, "data/user_profile.json")
-            print("profile saved to data/user_profile.json")
+            save_profile(new_stable, USER_PROFILE_JSON)
+            print(f"profile saved to {USER_PROFILE_JSON}")
         else:
             print("no profile changes were saved")
 
@@ -148,8 +149,8 @@ def _run_profile_sync_preview(apply_changes: bool) -> int:
 def main() -> None:
     from src.llm_reeval import load_profile
 
-    songs = load_songs("data/songs.csv")
-    stable = load_profile("data/user_profile.json") or _default_stable_profile()
+    songs = load_songs(SONGS_CSV)
+    stable = load_profile(USER_PROFILE_JSON) or _default_stable_profile()
 
     if "--sync-profile-preview" in sys.argv:
         raise SystemExit(_run_profile_sync_preview(apply_changes=False))
@@ -159,6 +160,22 @@ def main() -> None:
 
     if "--now-playing" in sys.argv:
         from src.player import run_now_playing
+
+        # Sync Spotify history → update songs.csv + history.jsonl → refresh profile
+        if "--no-sync" not in sys.argv:
+            print("[startup] Syncing Spotify listening history...")
+            from src.spotify_sync import run_sync
+            songs = run_sync(SONGS_CSV, HISTORY_JSONL)
+
+            # Re-evaluate profile against newly imported history before playing
+            from src.llm_reeval import update_profile_at_session_end, save_profile
+            updated_stable, reason = update_profile_at_session_end(HISTORY_JSONL, stable)
+            if updated_stable.version != stable.version:
+                save_profile(updated_stable, USER_PROFILE_JSON)
+                print(f"[startup] Profile updated to v{updated_stable.version}: {reason}")
+                stable = updated_stable
+            else:
+                print(f"[startup] Profile unchanged: {reason}")
 
         run_now_playing(songs, stable)
         return
