@@ -542,6 +542,18 @@ def call_llm_reeval(
         return candidate, "deterministic only (API error)"
 
     candidate = parse_and_guard(raw_json, stable, allow_genre_change, allow_mood_change)
+
+    # If LLM vetoed all changes (returned {} or made no tracked modifications),
+    # fall back to the deterministic candidate so valid evidence isn't silently discarded.
+    _TRACKED = list(_NUMERIC_FIELDS) + [
+        "target_tempo_bpm", "favorite_genre", "favorite_mood",
+        "likes_acoustic", "preferred_mood_tags",
+    ]
+    llm_changed = any(getattr(candidate, f) != getattr(stable, f) for f in _TRACKED)
+    if not llm_changed:
+        candidate = _apply_changes(stable, changes)
+        return candidate, "deterministic (LLM returned no changes)"
+
     return candidate, "hybrid (deterministic + OpenAI)"
 
 
