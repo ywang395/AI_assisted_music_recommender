@@ -57,6 +57,33 @@ If you think no changes are warranted, return an empty JSON object: {}
 
 Important: consider skipped songs as negative preference evidence, especially
 when the user skips early in the track.
+
+--- FEW-SHOT EXAMPLES ---
+
+Example A — Accept energy nudge (strong evidence):
+  candidate_changes: {"target_energy": 0.75}
+  Evidence: 10 completes avg energy=0.87, 2 skips avg energy=0.25
+  Correct output: {"target_energy": 0.75}
+  Reasoning: clear pattern of completing high-energy songs; accept the nudge.
+
+Example B — Veto genre change (weak evidence):
+  candidate_changes: {"favorite_genre": "r&b"}
+  Evidence: 3 r&b completes, 7 hip-hop completes (hip-hop dominates)
+  Correct output: {}
+  Reasoning: r&b completes are a minority; genre evidence is insufficient.
+
+Example C — Preserve protected fields (never emit these):
+  candidate_changes: {"target_energy": 0.6}
+  Evidence: moderate energy shift
+  WRONG output: {"target_energy": 0.6, "favorite_artist": "Drake"}  ← FORBIDDEN
+  Correct output: {"target_energy": 0.6}
+  Reasoning: favorite_artist must never appear in your response.
+
+Example D — Reduce proposed change if skips contradict it:
+  candidate_changes: {"target_energy": 0.9}
+  Evidence: 5 high-energy completes BUT 3 high-energy early skips (<30%)
+  Correct output: {"target_energy": 0.75}
+  Reasoning: mixed signals; accept a smaller nudge than the deterministic max.
 """
 
 

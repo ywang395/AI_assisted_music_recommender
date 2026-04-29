@@ -48,3 +48,216 @@ id,title,artist,genre,mood,energy,tempo_bpm,valence,danceability,acousticness,po
 47,Eain Pyan Chain,Doublej,pop,joyful,0.7,130,0.65,0.75,0.1,50,2020,upbeat|catchy|danceable,0.72,0.55,0.02,3E1mvSCHd8rNkb3E5KQ8TY
 48,Don't Lose Sleep,X-Boxin,hip-hop,sad,0.5,90,0.4,0.45,0.3,50,2010,emotional|reflective|melancholic,0.5,0.7,0.05,1kBM7GJhhzkMV7nXR26wKZ
 49,You & I,One Direction,pop,happy,0.75,120,0.85,0.7,0.3,50,2010,uplifting|romantic|catchy,0.8,0.6,0.0,2afCBiru10AFckfOa49wIa
+50,Cameras,Wiz Khalifa,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,4sj4TMUHHRYV2Kvb9aPSIb
+51,Hurt,X-Boxin,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,0fpuABwbTgQbLVGsCCh52C
+52,Locked Away (feat. Adam Levine),R. City,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,7x5xYW5W42OGPAdHUyyguy
+53,Beautiful (feat. Camila Cabello),Bazzi,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,4VUwkH455At9kENOfzTqmF
+54,Sorry (Remix),Y3llO,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,0gibHY0qgr4dE7uswjY7Cb
+55,It Will Rain,Bruno Mars,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,0M3HkE321xpCbCYqVKzr1q
+56,No Reason,Ryan.B,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,7uwJwSKpmzZH7p7imm4f1P
+57,8 Letters,Why Don't We,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,4zRZAmBQP8vhNPf9i9opXt
+58,Chit Lu Mike,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,7LYqitHnrP8UTiJhVyVPUA
+59,Scar,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,3CXRMV0ca0Ns3Hp2lWX7ZO
+60,Why,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,5ZFlmg64ygPIocQ9oiVG3y
+61,Sugar Daddy,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,3ZFhmCVfbtrfPwUQP64lk2
+62,I'm sorry ..Mom,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,5EVz7WwcbpoaCSwXip5KYk
+63,Yee Sar,He' Lay,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,6nMQg0VcpJQQsskA5o2bIe
+64,Lann Thayell,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,2nzU0N3R2bwJFRkoY7k0zL
+65,NE NE LAY NAK WAYY,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,14js9XFH8vOqtmZ4RdwEyN
+66,Nya Alin,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,5hqeF4pqbeumd9w4hBhN76
+67,ATHAE KO KHWAL TAE MOE - Bossa Nova Version,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,43T3972XkywjT5GOS1jEJT
+68,DONUT,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,62lcZj4B1P4QWlo5lhZ9jc
+69,Ngar Ma Shi Thaw Nin,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,3JMWw8RxFm1j64tHBHh6tU
+70,Risk It All,Bruno Mars,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,5y2ijHECwFYWqcAHKTZgzD
+71,CHANGE,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,1mZYrX9q829BgfW1vgNIHI
+72,Time To Say Goodbye,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,3IVw3TGoGK4Aj4Z4teE6Lu
+73,Soul & Body,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,3N7L7GJqdaZamprlK8LddH
+74,24/7,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,5uSrMmO4HDGW62SnN1LITE
+75,Friend Zone,RB2,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,73oewxdXFeRwjBwYa6lgop
+76,LiFE,JCZ,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,4xytCbzXUf1cCXCj6O6aU3
+77,Thar Thar Kyaung Twar Mal,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,0Fx0sW408RB6wDdhiQKvmK
+78,Hometown,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,1C8dD0UTY8kgN2gZrOQGqC
+79,Ngel Ngel Lay Ka Htae Ka,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,3TasygenZ94cCPWyIYB4XH
+80,မင်းအတွက် (Original Soundtrack of 1994 Movie),Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,4WAuAaGQhkLYbGfBazjbGC
+81,ညစ်ပေခဲ့သောနှလုံးသားများ,Bunny Phyoe,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,57kq6k18PxUufYze3Lu9SN
+82,4 Real,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,5NUk6tFHtdz9AGD5EalG8d
+83,MANDALIAN,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,6N0DExMQH4fXX1QI2PhWO3
+84,Tate Ta Khoe,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,5pYmkWVBFn4DKz4uC9KGe9
+85,အချစ်,BG18,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,4MnK6mDT1QtokcKRz9bZ9y
+86,143,JCZ,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,5GZqPlJ7JUOZFaOcdlPn8J
+87,Saung,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,75NFbLmbomqdNGoyuwY571
+88,Athel Ko Khwel Dae Moe (Y3ll0 Remix),JCZ,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,1wZ2MQqwj6WlzUGeXLktk9
+89,One Day,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,0KWKEDqZTbQVVHmfn0VxTY
+90,Payphone,Maroon 5,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,1XGmzt0PVuFgQYYnV2It7A
+91,Perfect,One Direction,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,3NLnwwAQbbFKcEcV8hDItk
+92,we can't be friends (wait for your love),Ariana Grande,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,51ZQ1vr10ffzbwIjDCwqm4
+93,Leaf,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,2PA2i9VPPuyKvO1c4XQWnt
+94,Eaint Mat Mal,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,2TDI0llg49i3lwHeB7EOnD
+95,Heaven,Bazzi,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,4E2sMWXzxK3uYJerGbeUfp
+96,SWIM,BTS,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,68lbSrXDORS51pmyjZv712
+97,LDRS,Doublej,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,6CDv3O37sjDMQR683OH1vg
+98,Closer,The Chainsmokers,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,7BKLCZ1jbUBVqRi2FVlTVw
+99,Hana - Ballad,Fujii Kaze,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,08ldhcNuoqot1mavblvKfc
+100,満ちてゆく,Fujii Kaze,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,3Ez9uxIM4nwbAZRAdJvBxS
+101,ကိုယ့်အနားရှိစေချင်,R Zar Ni,pop,chill,0.5,100,0.5,0.5,0.5,50,2000,,0.5,0.5,0.5,4pVFaRNKscGPM528KO05c0
+102,Kyway Par Say,R Zar Ni,pop,chill,0.5,100,0.5,0.5,0.5,50,2000,,0.5,0.5,0.5,4C6LfXgH9DAPcoQoTvtDcg
+103,擱淺,Jay Chou,pop,chill,0.5,100,0.5,0.5,0.5,50,2000,,0.5,0.5,0.5,0cOMncRq4cmDLO4tPQnkBF
+104,Yin Yin Lay Yue,R Zar Ni,pop,chill,0.5,100,0.5,0.5,0.5,50,2000,,0.5,0.5,0.5,6PfDA7ZIcdb6OLL1b74s1X
+105,SLOW DANCING IN THE DARK,Joji,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,6rY5FAWxCdAGllYEOZMbjW
+106,HVN ON EARTH (with Kodak Black),Lil Tecca,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,4CIyxiObT9G35HrSItAblR
+107,PIXELATED KISSES,Joji,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,0XpxBV69JUDfqyzrJbndsw
+108,我的未來不是夢,EggPlantEgg,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,4kb6JFIDtu632WGxB68aCN
+109,Thank You (Not So Bad),Dimitri Vegas & Like Mike,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,09CnYHiZ5jGT1wr1TXJ9Zt
+110,Kyal Tway Kyway Tine,Wyne Su Khaing Thein,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,2AmyFPZE9eilFmUHYNHT5M
+111,ရှင်းပြခွင့်ပေးပါ,R Zar Ni,pop,chill,0.5,100,0.5,0.5,0.5,50,2000,,0.5,0.5,0.5,4PWasRatMCtStltccURvkO
+112,Toe Toe Lay Pyaw Par,Phoe Kar,pop,chill,0.5,100,0.5,0.5,0.5,50,2000,,0.5,0.5,0.5,4W9Lvx9WgKw2KGXQcfxxKS
+113,閣愛妳一擺,EggPlantEgg,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,4Zwn8WxD61diTwqv9hyTQA
+114,Glimpse of Us,Joji,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,2mlNgAeIBnL78ZriXgrRHz
+115,Die For You,Joji,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,00WLowvlN5cjkYpQV6pjo4
+116,Lighters,Bad Meets Evil,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,5zpDHEU12zATwLGvozxPw2
+117,Lan Khwal,Phoe Kar,pop,chill,0.5,100,0.5,0.5,0.5,50,2000,,0.5,0.5,0.5,45FR9bfkeMj9Iz1V8K0z0g
+118,YEAH RIGHT,Joji,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,52ooD6LHuXFubM6d1CDD93
+119,"Radio (ft. Trippie Redd, Jessica Baio & KABU)",Steve Aoki,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,5hl6h0tiX1IDrUTql65X7U
+120,Like You Do,Joji,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,4vgU9MGJwhgBEtlO8mMN49
+121,Thu Nge Chin Lay Par Dae',Sai Sai Kham Leng,pop,chill,0.5,100,0.5,0.5,0.5,50,2000,,0.5,0.5,0.5,2kHHmpUboDJmBzPkS3IafR
+122,NIGHT RIDER,Joji,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,2KFqsbztZK3J03hOcObLbG
+123,D Kha Phit Chit Lite Ya Dar,Zaw Paing,pop,chill,0.5,100,0.5,0.5,0.5,50,2000,,0.5,0.5,0.5,1y0VdUiMn7aTURBMpgjuTs
+124,1AM FREESTYLE,Joji,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,7EAQfy8KYXbx2UqNF4envA
+125,Shinunoga E-Wa,Fujii Kaze,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,0o9zmvc5f3EFApU52PPIyW
+126,ATTENTION,Joji,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,0WRBJ8YRdbS6rwZkCk1Odh
+127,From You,Bonobo,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,6t2gHlvw7kTK6M7M5f7S6K
+128,အပြစ်မတင်ရက်ပါ (Live),R Zar Ni,pop,chill,0.5,100,0.5,0.5,0.5,50,2000,,0.5,0.5,0.5,2O6mkkQJ86Pk8eKR92POdr
+129,Way Thwar Lal,Big Bag,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,3GSFwq5clRlZzUzL3JG47u
+130,Thinking Bout You,rei brown,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,05ZEIO8vJ0zod3WmH3ajTc
+131,La Cienega,88rising,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,1EbxyKoc74jf36JkZ31Frx
+132,Walking (feat. Swae Lee & Major Lazer),88rising,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,5lpziNlFMw66epACwWSsPH
+133,Nga Yae Hlyoh Wat Chat,Phoe Kar,pop,chill,0.5,100,0.5,0.5,0.5,50,2000,,0.5,0.5,0.5,38eO64zJzo19h8P0WAHtHQ
+134,Will He,Joji,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,3O2BsbHOMRtMgDdCoBp1pj
+135,Run,Joji,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,2r8RwegunaKMYW4pDFEMKM
+136,Gimme Love,Joji,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,0eF8TYM3rYzdS26URcs4U6
+137,Midsummer Madness,88rising,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,0qiMB9VYpBOhTcvi47h4nX
+138,Breathe,88rising,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,585XZbRc85WaAlBbvU5Nkc
+139,半島鐵盒,Jay Chou,pop,chill,0.5,100,0.5,0.5,0.5,50,2000,,0.5,0.5,0.5,24F4oxC8oUBbRvpEOGjwPj
+140,worldstar money (interlude),Joji,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,3Y3KY9Apoeet0mYKM5QySi
+141,To Thu Ngal Chin,Phyo Pyae Sone,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,5jBuH5WgmcTsIJ6S4B4gBd
+142,Hnin Wai Tae Saung,R Zar Ni,pop,chill,0.5,100,0.5,0.5,0.5,50,2000,,0.5,0.5,0.5,3AoPUecx5EHGRn3auG9IFn
+143,A Chit Sone,R Zar Ni,pop,chill,0.5,100,0.5,0.5,0.5,50,2000,,0.5,0.5,0.5,2yXFx7EmNe5Za2rCLVQWbn
+144,Ta Khar Ta Lay,R Zar Ni,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,3KIL7Q1YSbtuCxLuNdUQ2Z
+145,Lwal Nay Tae Sone Mhat Myar,R Zar Ni,pop,chill,0.5,100,0.5,0.5,0.5,50,2000,,0.5,0.5,0.5,2ffc2ocB04vjyo91cP3AXS
+146,D Ka Pyit Chit Like Ya Tar,Zaw Paing,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,5ig2dEhvmVuExOjBMXSZCp
+147,Phyu Nee Pyar War,R Zar Ni,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,283ld86eTvCralp3NtRct2
+148,Ta Yat Tot Ngo Par,Myanmar 1990s Music,pop,chill,0.5,100,0.5,0.5,0.5,50,1990,,0.5,0.5,0.5,4e2I5voE6iuFgmtkXQ0RJV
+149,Pa Yi Pa Kha,Myanmar 1990s Music,pop,chill,0.5,100,0.5,0.5,0.5,50,2000,,0.5,0.5,0.5,1roatOHqERZj8I4VzIAoL8
+150,Ma Sone Tat Phoo Sar,Y Wine,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,5DCDoDxeC0tuRA0S5b3FLN
+151,Not Like Us,Kendrick Lamar,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,6AI3ezQ4o3HUoP6Dhudph3
+152,Pan Chit Thu,Toe Khine,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,0H7b9N47W6fxanGQfQ45BC
+153,BAND4BAND (feat. Lil Baby),Central Cee,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,7iabz12vAuVQYyekFIWJxD
+154,Kyay Zuu Par Kwal,Shine,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,3DKNyUl7uQDtUNHwNJLIDj
+155,Shwe Lal Tine,R Zar Ni,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,0gKeMLtrMOU5K2XJ6gOPCo
+156,Nay Yae Nae La Yae Nya,Toe Khine,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,4npvUw77CZZRdyCpw0elJ0
+157,Phyu Nee Pyar War,Artists Group,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,3LxCmKWbojtE51UNma2rwH
+158,Here With Me,d4vd,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,5LrN7yUQAzvthd4QujgPFr
+159,Ta Khar Hte` Chit Chin Lo Par - Remix,Chan Chan,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,4b9kG9FqsseHLmV1Y4RBcE
+160,Ma Mae Nae,X-Boxin,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,0OjMmRy398FIXkAbrgdhDp
+161,The Old You,Shine,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,3SUoK7VT43COgKXc8JhusQ
+162,Sun,Derik Fein,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,7Hybzi2nMsBsg2Fs2aKUh7
+163,I’m Just Sayin,Yair Yint Aung,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,2u2PlGxhJcTkFPeJeYoXzS
+164,Lay Low,Tiësto,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,0zKbDrEXKpnExhGQRe9dxt
+165,Chit Tay Than Thar,Shine,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,1N8JegaXfcbG9iUY6OdTC1
+166,Too Sweet,Hozier,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,5Z0UnEtpLDQyYlWwgi8m9C
+167,Min Atwat Ngar - Myanmar Version,Shine,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,73JDN3fMpVr71C9pRPjKiK
+168,If I Lose Myself - Alesso vs OneRepublic,OneRepublic,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,3ScJy88F8KqGDfWu8XJhHx
+169,1990,Shine,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,0Kqfu0rtnRy4YmqapziBmI
+170,Way Nay Tae Tha Chin,R Zar Ni,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,6JxM14Wsk99J86q1HRxJVG
+171,Always Love featuring Hyunjin (Stray Kids),d4vd,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,1WKafez8TM4dVYlSsxi6dS
+172,浪子回頭,EggPlantEgg,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,301mxTHzMyFOVUXl6U22sf
+173,Phyat,R Zar Ni,pop,chill,0.5,100,0.5,0.5,0.5,50,2000,,0.5,0.5,0.5,4VO8VIV74jl2bQ1bX19URb
+174,死ぬのがいいわ,Fujii Kaze,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,0HYAsQwJIO6FLqpyTeD3l6
+175,Which One (feat. Central Cee),Drake,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,5FMyXeZ0reYloRTiCkPprT
+176,El Thae,Tin Zar Maw,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,2fp97rUb2Em72OBs2EQRQP
+177,Disco Marathon - Extended Mix,Don Diablo,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,196vIZXLPKpDWblsjEgEez
+178,Shouldn't Be,Luke Chiang,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,7F6PtLP6fJPVtA1FWVkl8K
+179,Mystical Magical,Benson Boone,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,221eHga9f9Ne4f8D7WVgPT
+180,Min Yae Ah Yate Kalay,Chan Chan,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,17RoarrQ3F6Y2MLEWgX0fZ
+181,အချစ်စွမ်းအင်,Zaw Win Htut,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,4htCXyNo67agUVNuSnZ8Qc
+182,Big Dawgs,Hanumankind,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,0OA00aPt3BV10qeMIs3meW
+183,luther (with sza),Kendrick Lamar,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,2CGNAOSuO1MEFCbBRgUzjd
+184,I Never Loved You,Halsey,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,5P4GzuYKBAYCdNtcBx5K6l
+185,Guess featuring billie eilish,Charli xcx,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,7qbJ4Dh8xuYUFdAWL8SFPK
+186,End of Beginning,Djo,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,3qhlB30KknSejmIvZZLjOD
+187,Sprinter,Dave,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,2FDTHlrBguDzQkp7PVj16Q
+188,Lose Yourself,Eminem,pop,chill,0.5,100,0.5,0.5,0.5,50,2000,,0.5,0.5,0.5,1v7L65Lzy0j0vdpRjJewt1
+189,SPOT!,ZICO,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,1SS0WlKhJewviwEDZ6dWj0
+190,QUARTER LIFE CRISIS,Taylor Bickett,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,5qM8NWUsRQ1xztraiBgn0g
+191,Faraway so Close,Thar Nge,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,1Jna7Y7CpVOgWTsdWcEQt4
+192,I Like You So Much You’ll Know It,Ysabelle Cuevas,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,7x0Kb4S3ZjTJ4cJ5oPlG54
+193,Way Thwar Tae A Khar,Htoo Eain Thin,pop,chill,0.5,100,0.5,0.5,0.5,50,1980,,0.5,0.5,0.5,49Xm9QBEBVue7BXbUyqt8B
+194,Tip Toe,HYBS,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,0MJ5wKsPEeihONNfugHGy7
+195,It's not beautiful and it doesn't hurt,Wonstein,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,0tS9IeWNCqTjpuYd2iQtSt
+196,敢傻敢衝 - 2020黑松沙士年度主題曲,EggPlantEgg,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,3V0psPzZ73wCDh4BmM7izM
+197,Lace It (with Eminem & benny blanco),Juice WRLD,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,4qmG24ebshLXtKu9HIShBP
+198,Yann,The Zero,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,22C8EQboG9oseuSLbZKd3M
+199,1 9 9 0,Shine,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,5oHTkBmhowxQ0onNy7NfMv
+200,Kill Bill,SZA,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,3OHfY25tqY28d16oZczHc8
+201,Double Fantasy (with Future),The Weeknd,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,4VMRsbfZzd3SfQtaJ1Wpwi
+202,lowkey,NIKI,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,5TTXEcfsYLh6fTarLaevTi
+203,有些,颜人中,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,3V2v19gDm4rmRkMwcgS4X2
+204,Sharks,Imagine Dragons,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,0TyUOnU4H4GLqOcrH0auc8
+205,Lo Ta Ya,Reason,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,2tVth3JhdiMyM6NQS4N6NZ
+206,Ma Sone Thaw Lan,Zaw Paing,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,5ItSFXJWa9923Pg3cYyJnT
+207,Angels Like You,Miley Cyrus,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,1daDRI9ahBonbWD8YcxOIB
+208,Seven (feat. Latto),Jung Kook,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,7x9aauaA9cu6tyfpHnqDLo
+209,アイドル,YOASOBI,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,7ovUcF5uHTBRzUpB6ZOmvt
+210,Lost Me,GIVĒON,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,6TSO4hwz9WGrEUY7ABGVim
+211,You’re Not There,Johnny Stimson,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,7ltr1P3d4djxu3BoR6S1eX
+212,drunk text,Henry Moodie,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,0KpWiHVmIFDTvai20likX4
+213,Eastside (with Halsey & Khalid),benny blanco,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,7FGq80cy8juXBCD2nrqdWU
+214,NIGHT DANCER,imase,pop,chill,0.5,100,0.5,0.5,0.5,50,2020,,0.5,0.5,0.5,3gmn76fCtpDazGMnN0QMHX
+215,Grenade,Bruno Mars,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,2tJulUYLDKOg9XrtVkMgcJ
+216,When I Was Your Man,Bruno Mars,pop,chill,0.5,100,0.5,0.5,0.5,50,2010,,0.5,0.5,0.5,0nJW01T7XtvILxQgC5J7Wh
+217,River (feat. Ed Sheeran),Eminem,hip-hop,motivated,0.75,85,0.6,0.7,0.1,50,2010,powerful|inspiring|emotional,0.8,0.85,0.0,1cS0TgbR263ey9jn0MwD2s
+218,Godzilla (feat. Juice WRLD),Eminem,hip-hop,intense,0.9,160,0.5,0.65,0.05,50,2020,fast-paced|aggressive|dynamic,0.85,0.9,0.0,7FIWs0pqAYbP91WWM0vlTQ
+219,All to Myself,Future,hip-hop,romantic,0.7,120,0.55,0.75,0.15,50,2020,smooth|seductive|catchy,0.7,0.8,0.0,0lOQaZwX9AkAiSvObh4G70
+220,Gasoline,The Weeknd,pop,moody,0.8,120,0.4,0.6,0.05,50,2020,dark|sultry|introspective,0.75,0.7,0.0,3KyKxJ4P3pVCgaZwaq2rUC
+221,Creepin' (with The Weeknd & 21 Savage),Metro Boomin,hip-hop,intense,0.85,140,0.45,0.7,0.1,50,2020,edgy|dramatic|catchy,0.8,0.75,0.0,2dHHgzDwk4BJdRwy9uXhTO
+222,Call Out My Name,The Weeknd,pop,sad,0.65,90,0.5,0.55,0.2,50,2010,heartfelt|emotional|soulful,0.65,0.85,0.0,09mEdoA6zrmBPgTEN5qXmN
+223,Can't Feel My Face,The Weeknd,pop,joyful,0.85,108,0.7,0.8,0.05,50,2010,upbeat|catchy|danceable,0.9,0.6,0.0,22VdIZQfgXJea34mQxlt81
+224,The Hills,The Weeknd,pop,moody,0.9,113,0.4,0.65,0.1,50,2010,dark|intense|atmospheric,0.85,0.8,0.0,7fBv7CLKzipRk6EC6TWHOB
+225,Moth To A Flame (with The Weeknd),Swedish House Mafia,electronic,energetic,0.8,124,0.65,0.75,0.05,50,2020,uplifting|danceable|catchy,0.8,0.7,0.0,0VO8gYVDSwM1Qdd2GsMoYK
+226,"One Of The Girls (with JENNIE, Lily Rose Depp)",The Weeknd,pop,romantic,0.7,100,0.6,0.7,0.1,50,2020,smooth|catchy|seductive,0.75,0.65,0.0,7CyPwkp0oE8Ro9Dd5CUDjW
+227,Blinding Lights,The Weeknd,pop,joyful,0.9,171,0.8,0.85,0.02,50,2020,upbeat|catchy|danceable,0.9,0.7,0.0,0VjIjW4GlUZAMYd2vXMi3b
+228,Popular (with Playboi Carti & Madonna) - From The Idol Vol. 1 (Music from the HBO Original Series),The Weeknd,pop,energetic,0.75,120,0.65,0.7,0.05,50,2020,upbeat|catchy|dynamic,0.75,0.65,0.0,6WzRpISELf3YglGAh7TXcG
+229,Die For You - Remix,The Weeknd,pop,romantic,0.7,95,0.6,0.65,0.15,50,2020,smooth|emotional|catchy,0.7,0.75,0.0,7oDd86yk8itslrA9HRP2ki
+230,Save Your Tears,The Weeknd,pop,sad,0.8,118,0.7,0.75,0.1,50,2020,heartfelt|catchy|emotional,0.8,0.7,0.0,5QO79kh1waicV47BqGRL3g
+231,Cry For Me,The Weeknd,pop,sad,0.75,110,0.55,0.65,0.15,50,2020,heartfelt|emotional|soulful,0.75,0.7,0.0,3AWDeHLc88XogCaCnZQLVI
+232,Timeless (feat. Playboi Carti & Doechii) - Remix,The Weeknd,pop,energetic,0.8,130,0.65,0.75,0.1,50,2020,upbeat|catchy|dynamic,0.8,0.7,0.0,7kJyHFVVZMv1wQYRU9de9d
+233,One Last Time,Ariana Grande,pop,romantic,0.7,120,0.6,0.7,0.15,50,2010,catchy|emotional|heartfelt,0.75,0.7,0.0,7xoUc6faLbCqZO6fQEYprd
+234,Company,Justin Bieber,pop,romantic,0.65,90,0.55,0.65,0.2,50,2010,smooth|catchy|seductive,0.65,0.7,0.0,61uyGDPJ06MkxJtHgPmuyO
+235,What Lovers Do (feat. SZA),Maroon 5,pop,romantic,0.7,100,0.65,0.75,0.1,50,2010,smooth|catchy|upbeat,0.7,0.65,0.0,0GxQ1A5L9xnMOytbP6eKBG
+236,Min Net Pat Thet Yin,IDIOTS,pop,chill,0.6,110,0.55,0.65,0.15,50,2010,laid-back|smooth|catchy,0.6,0.6,0.0,20SaBm6Mwed04IHoSfzrs5
+237,All We Know (feat. Phoebe Ryan),The Chainsmokers,pop,romantic,0.7,100,0.6,0.7,0.15,50,2010,smooth|catchy|emotional,0.7,0.65,0.0,2rizacJSyD9S1IQUxUxnsK
+238,I Need You,Reynard Silva,pop,romantic,0.65,95,0.55,0.65,0.2,50,2010,smooth|catchy|emotional,0.65,0.7,0.0,54fO6i2qmfjmPjGZyTPksq
+239,Locked out of Heaven,Bruno Mars,pop,joyful,0.85,144,0.75,0.8,0.05,50,2010,upbeat|catchy|danceable,0.9,0.65,0.0,3w3y8KPTfNeOKPiqUTakBh
+240,Bad Things (with Camila Cabello),mgk,pop,energetic,0.75,120,0.6,0.7,0.1,50,2010,upbeat|catchy|dynamic,0.75,0.65,0.0,1PSBzsahR2AKwLJgx8ehBj
+241,Chain,The Zero,rock,intense,0.8,130,0.55,0.65,0.1,50,2010,powerful|dynamic|catchy,0.8,0.7,0.0,77UCcUMG9V6Q3tpK377DdS
+242,Better Now,Post Malone,pop,sad,0.7,90,0.65,0.7,0.15,50,2010,heartfelt|emotional|catchy,0.7,0.65,0.0,7dt6x5M1jzdTEt8oCbisTK
+243,Tired,Alan Walker,electronic,chill,0.6,100,0.5,0.6,0.2,50,2010,laid-back|smooth|melodic,0.6,0.65,0.0,3b5Li4QKDVBx1x7fQuu54a
+244,Somebody Else,The 1975,indie pop,sad,0.65,120,0.55,0.65,0.15,50,2010,heartfelt|emotional|melancholic,0.65,0.7,0.0,4m0q0xQ2BNl9SCAGKyfiGZ
+245,Everyday,Ariana Grande,pop,joyful,0.7,120,0.6,0.7,0.15,50,2010,upbeat|catchy|danceable,0.7,0.65,0.0,30TmLgK0ja5O8q9l4BShIX
+246,They Don't Know About Us,One Direction,pop,romantic,0.65,100,0.6,0.65,0.15,50,2010,smooth|catchy|emotional,0.65,0.6,0.0,6M31fPFCYB8Job3MCjjrDV
+247,Scared to Be Lonely,Martin Garrix,electronic,sad,0.7,100,0.55,0.65,0.15,50,2010,heartfelt|emotional|melancholic,0.7,0.65,0.0,3ebXMykcMXOcLeJ9xZ17XH
+248,"I'm the One (feat. Justin Bieber, Quavo, Chance the Rapper & Lil Wayne)",DJ Khaled,hip-hop,energetic,0.85,100,0.7,0.8,0.05,50,2010,upbeat|catchy|dynamic,0.85,0.65,0.0,3DXncPQOG4VBw3QHh3S817
+249,Take Care,JCZ,pop,chill,0.6,90,0.5,0.6,0.2,50,2020,laid-back|smooth|melodic,0.6,0.65,0.0,36PD44qtxMg86AMLKgxNyo
+250,Takeaway,The Chainsmokers,pop,sad,0.7,120,0.6,0.7,0.15,50,2010,heartfelt|emotional|melancholic,0.7,0.65,0.0,3g0mEQx3NTanacLseoP0Gw
+251,Thinking out Loud,Ed Sheeran,pop,romantic,0.65,79,0.7,0.6,0.3,50,2010,smooth|heartfelt|emotional,0.65,0.8,0.0,34gCuhDGsG4bRPIf9bb02f
+252,Just the Way You Are,Bruno Mars,pop,joyful,0.7,109,0.8,0.75,0.1,50,2010,upbeat|catchy|romantic,0.75,0.65,0.0,7BqBn9nzAq8spo5e7cZ0dJ
+253,သူစိမ်း,Big Bag,pop,chill,0.6,100,0.55,0.65,0.2,50,2010,laid-back|smooth|melodic,0.6,0.6,0.0,262sU4saSD8S43YMvWn9jH
+254,Better,Khalid,r&b,romantic,0.65,90,0.6,0.65,0.2,50,2010,smooth|catchy|emotional,0.65,0.65,0.0,2OpBganfGk2GVdSlRdxzaX
+255,Story of My Life,One Direction,pop,sad,0.7,120,0.6,0.7,0.15,50,2010,heartfelt|emotional|melancholic,0.7,0.7,0.0,4nVBt6MZDDP6tRVdQTgxJg
+256,Let Go,Beau Young Prince,pop,chill,0.65,100,0.55,0.65,0.2,50,2010,laid-back|smooth|melodic,0.65,0.65,0.0,5F2AuFzEiuAQD0JVNjVJQz
+257,Never Say Never,Justin Bieber,pop,chill,0.6,90,0.5,0.6,0.2,50,2010,laid-back|smooth|melodic,0.6,0.65,0.0,5GYbkDveRD2I8M5ZJ14hWn
+258,Nay Yar Haung,Doublej,pop,chill,0.6,100,0.55,0.65,0.2,50,2010,laid-back|smooth|melodic,0.6,0.6,0.0,2ghipJr26AE46DI18hapeW
+259,A Chit Bal Ka Sa,Phoe Kar,pop,chill,0.6,100,0.55,0.65,0.2,50,2020,laid-back|smooth|melodic,0.6,0.6,0.0,7aZjlywdyx6W5gyykB0ari
+260,真っ白,Fujii Kaze,pop,chill,0.65,110,0.6,0.65,0.2,50,2020,laid-back|smooth|melodic,0.65,0.65,0.0,57UKjaYzGB8yK4EQWAeksH
+261,風よ,Fujii Kaze,pop,chill,0.65,110,0.6,0.65,0.2,50,2020,laid-back|smooth|melodic,0.65,0.65,0.0,77NDAeUdOg9ODtEhbZjAb4
+262,Shiver,John Summit,electronic,energetic,0.85,128,0.7,0.8,0.05,50,2020,upbeat|danceable|dynamic,0.85,0.7,0.0,32VIrOsJmwvqRm4rWFBCsi

@@ -163,19 +163,52 @@ def main() -> None:
 
         # Sync Spotify history → update songs.csv + history.jsonl → refresh profile
         if "--no-sync" not in sys.argv:
-            print("[startup] Syncing Spotify listening history...")
+            import time as _time
+            print("\n" + "=" * 64)
+            print("  PIPELINE — Startup Sync")
+            print("=" * 64)
+
+            # Stage A: Spotify data retrieval (multi-source RAG)
+            print("\n[A] Retrieving listening data from Spotify (3 sources)...")
+            t0 = _time.perf_counter()
             from src.spotify_sync import run_sync
             songs = run_sync(SONGS_CSV, HISTORY_JSONL)
+            sync_elapsed = _time.perf_counter() - t0
+            print(f"    → {len(songs)} songs in library | {sync_elapsed:.1f}s total")
 
-            # Re-evaluate profile against newly imported history before playing
-            from src.llm_reeval import update_profile_at_session_end, save_profile
+            # Stage B: Deterministic analysis of updated history
+            print("\n[B] Deterministic analysis of listening history...")
+            from src.llm_reeval import (
+                deterministic_update, load_last_n_history,
+                update_profile_at_session_end, save_profile,
+            )
+            t0 = _time.perf_counter()
+            history = load_last_n_history(HISTORY_JSONL)
+            changes, allow_genre, allow_mood = deterministic_update(history, stable)
+            det_elapsed = _time.perf_counter() - t0
+            print(f"    → {len(history)} events analysed | {len(changes)} candidate changes | {det_elapsed*1000:.0f}ms")
+            if changes:
+                for field, val in changes.items():
+                    print(f"       candidate: {field} = {val!r}")
+
+            # Stage C: LLM refinement of candidate changes
+            print("\n[C] LLM refinement (OpenAI gpt-4.1-mini)...")
+            t0 = _time.perf_counter()
             updated_stable, reason = update_profile_at_session_end(HISTORY_JSONL, stable)
+            llm_elapsed = _time.perf_counter() - t0
+            print(f"    → method: {reason.split(' — ')[0]} | {llm_elapsed:.1f}s")
+
+            # Stage D: Profile versioning
+            print("\n[D] Profile versioning...")
             if updated_stable.version != stable.version:
                 save_profile(updated_stable, USER_PROFILE_JSON)
-                print(f"[startup] Profile updated to v{updated_stable.version}: {reason}")
+                print(f"    → v{stable.version} → v{updated_stable.version} saved")
+                print(f"    → reason: {reason}")
                 stable = updated_stable
             else:
-                print(f"[startup] Profile unchanged: {reason}")
+                print(f"    → no update: {reason}")
+
+            print("\n" + "=" * 64 + "\n")
 
         run_now_playing(songs, stable)
         return
