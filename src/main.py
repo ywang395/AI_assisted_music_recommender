@@ -5,10 +5,13 @@ Command line runner for the Music Recommender Simulation.
 import os
 import sys
 import textwrap
+import json
+from collections import Counter
 
-sys.path.insert(0, os.path.dirname(__file__))
-from recommender import SCORING_MODES, load_songs, recommend_songs
+PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
+sys.path.insert(0, PROJECT_ROOT)
 from src.config import HISTORY_JSONL, SONGS_CSV, USER_PROFILE_JSON
+from src.recommender import SCORING_MODES, load_songs, recommend_songs
 
 
 def _truncate(text: str, width: int) -> str:
@@ -90,7 +93,7 @@ def _default_stable_profile():
 
 
 def _profile_to_user_prefs(stable) -> dict:
-    return {
+    prefs = {
         "genre": stable.favorite_genre,
         "artist": stable.favorite_artist,
         "mood": stable.favorite_mood,
@@ -105,6 +108,40 @@ def _profile_to_user_prefs(stable) -> dict:
         "live_energy": stable.target_live_energy,
         "lyrical_depth": stable.target_lyrical_depth,
         "instrumentalness": stable.target_instrumentalness,
+    }
+    prefs["song_penalties"] = _song_penalties_from_history(HISTORY_JSONL)
+    return prefs
+
+
+def _song_penalties_from_history(path: str, limit: int = 75) -> dict:
+    if not os.path.exists(path):
+        return {}
+
+    with open(path, "r", encoding="utf-8") as f:
+        lines = [line.strip() for line in f if line.strip()][-limit:]
+
+    penalties: Counter[str] = Counter()
+    for line in lines:
+        try:
+            event = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+
+        song_id = str(event.get("song_id", ""))
+        if not song_id:
+            continue
+
+        event_type = event.get("event_type")
+        if event_type == "skip":
+            elapsed_ratio = float(event.get("elapsed_ratio", 1.0))
+            penalties[song_id] += 0.45 if elapsed_ratio < 0.3 else 0.25
+        elif event_type in {"complete", "repeat"}:
+            penalties[song_id] -= 0.2 if event_type == "complete" else 0.35
+
+    return {
+        song_id: round(max(0.0, min(0.75, penalty)), 3)
+        for song_id, penalty in penalties.items()
+        if penalty > 0
     }
 
 
@@ -126,6 +163,7 @@ def _run_profile_sync_preview(apply_changes: bool) -> int:
     print(f"version: {stable.version} -> {new_stable.version}")
     print(f"genre  : {stable.favorite_genre} -> {new_stable.favorite_genre}")
     print(f"mood   : {stable.favorite_mood} -> {new_stable.favorite_mood}")
+    print(f"artist : {stable.favorite_artist or '(none)'} -> {new_stable.favorite_artist or '(none)'}")
     print(f"energy : {stable.target_energy} -> {new_stable.target_energy}")
     print(f"tempo  : {stable.target_tempo_bpm} -> {new_stable.target_tempo_bpm}")
     print(f"tags   : {stable.preferred_mood_tags} -> {new_stable.preferred_mood_tags}")
@@ -159,56 +197,13 @@ def main() -> None:
         raise SystemExit(_run_profile_sync_preview(apply_changes=True))
 
     if "--now-playing" in sys.argv:
+        from src.agentic_flow import run_startup_agentic_flow
         from src.player import run_now_playing
 
-        # Sync Spotify history → update songs.csv + history.jsonl → refresh profile
         if "--no-sync" not in sys.argv:
-            import time as _time
-            print("\n" + "=" * 64)
-            print("  PIPELINE — Startup Sync")
-            print("=" * 64)
-
-            # Stage A: Spotify data retrieval (multi-source RAG)
-            print("\n[A] Retrieving listening data from Spotify (3 sources)...")
-            t0 = _time.perf_counter()
-            from src.spotify_sync import run_sync
-            songs = run_sync(SONGS_CSV, HISTORY_JSONL)
-            sync_elapsed = _time.perf_counter() - t0
-            print(f"    → {len(songs)} songs in library | {sync_elapsed:.1f}s total")
-
-            # Stage B: Deterministic analysis of updated history
-            print("\n[B] Deterministic analysis of listening history...")
-            from src.llm_reeval import (
-                deterministic_update, load_last_n_history,
-                update_profile_at_session_end, save_profile,
-            )
-            t0 = _time.perf_counter()
-            history = load_last_n_history(HISTORY_JSONL)
-            changes, allow_genre, allow_mood = deterministic_update(history, stable)
-            det_elapsed = _time.perf_counter() - t0
-            print(f"    → {len(history)} events analysed | {len(changes)} candidate changes | {det_elapsed*1000:.0f}ms")
-            if changes:
-                for field, val in changes.items():
-                    print(f"       candidate: {field} = {val!r}")
-
-            # Stage C: LLM refinement of candidate changes
-            print("\n[C] LLM refinement (OpenAI gpt-4.1-mini)...")
-            t0 = _time.perf_counter()
-            updated_stable, reason = update_profile_at_session_end(HISTORY_JSONL, stable)
-            llm_elapsed = _time.perf_counter() - t0
-            print(f"    → method: {reason.split(' — ')[0]} | {llm_elapsed:.1f}s")
-
-            # Stage D: Profile versioning
-            print("\n[D] Profile versioning...")
-            if updated_stable.version != stable.version:
-                save_profile(updated_stable, USER_PROFILE_JSON)
-                print(f"    → v{stable.version} → v{updated_stable.version} saved")
-                print(f"    → reason: {reason}")
-                stable = updated_stable
-            else:
-                print(f"    → no update: {reason}")
-
-            print("\n" + "=" * 64 + "\n")
+            flow_result = run_startup_agentic_flow(stable)
+            songs = flow_result.songs
+            stable = flow_result.profile
 
         run_now_playing(songs, stable)
         return

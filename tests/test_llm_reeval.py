@@ -6,6 +6,7 @@ from src.llm_reeval import (
     LLM_EVENT_LIMIT,
     build_llm_prompt,
     call_llm_reeval,
+    deterministic_update,
     select_relevant_history_for_llm,
     summarize_recommendation_shift,
 )
@@ -222,3 +223,96 @@ def test_summarize_recommendation_shift_reports_when_top_recommendations_change(
     assert isinstance(summary, str)
     assert "top3" in summary
     assert isinstance(changed, bool)
+
+
+def test_deterministic_update_moves_from_heavily_skipped_current_genre_to_alternative():
+    profile = make_profile()
+    profile.favorite_genre = "pop"
+
+    history = (
+        [
+            {
+                "event_type": "skip",
+                "song_genre": "pop",
+                "song_mood": "happy",
+                "song_energy": 0.5,
+                "song_tempo_bpm": 100,
+                "elapsed_ratio": 0.1,
+            }
+            for _ in range(8)
+        ]
+        + [
+            {
+                "event_type": "complete",
+                "song_genre": "pop",
+                "song_mood": "happy",
+                "song_energy": 0.5,
+                "song_tempo_bpm": 100,
+                "elapsed_ratio": 1.0,
+            }
+            for _ in range(6)
+        ]
+        + [
+            {
+                "event_type": "complete",
+                "song_genre": "hip-hop",
+                "song_mood": "sad",
+                "song_energy": 0.65,
+                "song_tempo_bpm": 95,
+                "elapsed_ratio": 1.0,
+            }
+            for _ in range(4)
+        ]
+    )
+
+    changes, allow_genre, _ = deterministic_update(history, profile)
+
+    assert allow_genre is True
+    assert changes["favorite_genre"] == "hip-hop"
+
+
+def test_deterministic_update_learns_repeated_positive_artist():
+    profile = make_profile()
+    profile.favorite_artist = ""
+    history = [
+        {
+            "event_type": "complete",
+            "song_artist": "Eminem",
+            "song_genre": "hip-hop",
+            "song_mood": "intense",
+            "song_energy": 0.85,
+            "song_tempo_bpm": 90,
+            "elapsed_ratio": 1.0,
+        },
+        {
+            "event_type": "repeat",
+            "song_artist": "Eminem",
+            "song_genre": "hip-hop",
+            "song_mood": "intense",
+            "song_energy": 0.9,
+            "song_tempo_bpm": 88,
+            "elapsed_ratio": 1.0,
+        },
+        {
+            "event_type": "complete",
+            "song_artist": "Eminem",
+            "song_genre": "hip-hop",
+            "song_mood": "motivated",
+            "song_energy": 0.85,
+            "song_tempo_bpm": 90,
+            "elapsed_ratio": 1.0,
+        },
+        {
+            "event_type": "complete",
+            "song_artist": "Logic",
+            "song_genre": "hip-hop",
+            "song_mood": "intense",
+            "song_energy": 0.85,
+            "song_tempo_bpm": 160,
+            "elapsed_ratio": 1.0,
+        },
+    ]
+
+    changes, _, _ = deterministic_update(history, profile)
+
+    assert changes["favorite_artist"] == "Eminem"

@@ -31,9 +31,12 @@ _MAX_DELTA = 0.3
 _MAX_TEMPO_DELTA = 30
 _TEMPO_MIN = 40
 _TEMPO_MAX = 220
-_MIN_EVENTS = 5
+_MIN_EVENTS = 3
 _ENERGY_CHANGE_THRESHOLD = 0.05
-_CATEGORY_EVIDENCE_THRESHOLD = 0.35
+_CATEGORY_EVIDENCE_THRESHOLD = 0.25
+_ARTIST_EVIDENCE_THRESHOLD = 0.10
+_MIN_GENRE_COMPLETES = 2
+_MIN_ARTIST_POSITIVES = 3
 
 SYSTEM_PROMPT = """You are a music taste profiling assistant.
 
@@ -175,6 +178,12 @@ def save_profile(profile: StableUserProfile, path: str = "data/user_profile.json
         json.dump(profile.to_dict(), f, indent=2)
 
 
+def _profile_snapshot(profile: StableUserProfile) -> dict:
+    snapshot = profile.to_dict()
+    snapshot["previous_version"] = {}
+    return snapshot
+
+
 def load_profile(path: str = "data/user_profile.json") -> Optional[StableUserProfile]:
     if not os.path.exists(path):
         return None
@@ -257,11 +266,37 @@ def deterministic_update(
         if set(new_tags) != set(stable.preferred_mood_tags):
             changes["preferred_mood_tags"] = new_tags
 
+    # ── Favorite artist ──────────────────────────────────────────────────────
+    # This is deterministic only. The LLM still cannot set favorite_artist.
+    if positive:
+        skipped_artists = {
+            e.get("song_artist", "")
+            for e in negative
+            if e.get("elapsed_ratio", 1.0) < 0.3
+        }
+        positive_artists = Counter(
+            e.get("song_artist", "")
+            for e in positive
+            if e.get("song_artist")
+        )
+        for top_artist, artist_count in positive_artists.most_common():
+            artist_ratio = artist_count / max(len(positive), 1)
+            if (
+                top_artist
+                and top_artist != stable.favorite_artist
+                and top_artist not in skipped_artists
+                and artist_count >= _MIN_ARTIST_POSITIVES
+                and artist_ratio >= _ARTIST_EVIDENCE_THRESHOLD
+            ):
+                changes["favorite_artist"] = top_artist
+                break
+
     # ── Genre/mood change gates (relative ratios, not absolute fractions) ─────
     allow_genre_change = False
     allow_mood_change = False
 
     if negative and positive:
+        current_genre = stable.favorite_genre
         skip_genres = Counter(e.get("song_genre", "") for e in negative)
         complete_genres = Counter(e.get("song_genre", "") for e in positive)
         top_complete = complete_genres.most_common(1)[0] if complete_genres else (None, 0)
@@ -276,6 +311,24 @@ def deterministic_update(
         ):
             allow_genre_change = True
             changes["favorite_genre"] = top_complete[0]
+
+        # If the current genre is heavily skipped, let the profile move toward
+        # the strongest completed alternative even when the old genre still has
+        # historical completes in the rolling window.
+        current_skip_ratio = skip_genres.get(current_genre, 0) / max(len(negative), 1)
+        if not allow_genre_change and current_skip_ratio >= _CATEGORY_EVIDENCE_THRESHOLD:
+            alternative_completes = Counter(
+                genre
+                for genre, count in complete_genres.items()
+                for _ in range(count)
+                if genre and genre != current_genre and genre not in disliked_genres
+            )
+            if alternative_completes:
+                top_alternative = alternative_completes.most_common(1)[0]
+                alternative_ratio = top_alternative[1] / max(sum(alternative_completes.values()), 1)
+                if top_alternative[1] >= _MIN_GENRE_COMPLETES and alternative_ratio >= _CATEGORY_EVIDENCE_THRESHOLD:
+                    allow_genre_change = True
+                    changes["favorite_genre"] = top_alternative[0]
 
         current_mood = stable.favorite_mood
         skip_moods = Counter(e.get("song_mood", "") for e in negative)
@@ -517,7 +570,10 @@ def parse_and_guard(
 def _apply_changes(stable: StableUserProfile, changes: dict) -> StableUserProfile:
     """Apply candidate_changes dict directly to stable profile (deterministic path)."""
     raw = json.dumps(changes)
-    return parse_and_guard(raw, stable, allow_genre_change=True, allow_mood_change=True)
+    candidate = parse_and_guard(raw, stable, allow_genre_change=True, allow_mood_change=True)
+    if isinstance(changes.get("favorite_artist"), str) and changes["favorite_artist"].strip():
+        candidate.favorite_artist = changes["favorite_artist"].strip()
+    return candidate
 
 
 def call_llm_reeval(
@@ -560,12 +616,14 @@ def call_llm_reeval(
         return candidate, "deterministic only (API error)"
 
     candidate = parse_and_guard(raw_json, stable, allow_genre_change, allow_mood_change)
+    if isinstance(changes.get("favorite_artist"), str) and changes["favorite_artist"].strip():
+        candidate.favorite_artist = changes["favorite_artist"].strip()
 
     # If LLM vetoed all changes (returned {} or made no tracked modifications),
     # fall back to the deterministic candidate so valid evidence isn't silently discarded.
     _TRACKED = list(_NUMERIC_FIELDS) + [
         "target_tempo_bpm", "favorite_genre", "favorite_mood",
-        "likes_acoustic", "preferred_mood_tags",
+        "favorite_artist", "likes_acoustic", "preferred_mood_tags",
     ]
     llm_changed = any(getattr(candidate, f) != getattr(stable, f) for f in _TRACKED)
     if not llm_changed:
@@ -596,7 +654,7 @@ def update_profile_at_session_end(
     # Build diff summary
     diff_parts = []
     for fname in list(_NUMERIC_FIELDS) + ["target_tempo_bpm", "favorite_genre", "favorite_mood",
-                                           "likes_acoustic", "preferred_mood_tags"]:
+                                           "favorite_artist", "likes_acoustic", "preferred_mood_tags"]:
         old_val = getattr(stable, fname)
         new_val = getattr(candidate, fname)
         if old_val != new_val:
@@ -608,7 +666,7 @@ def update_profile_at_session_end(
     shift_summary, ranking_changed = summarize_recommendation_shift(stable, candidate)
     major_field_changed = any(
         getattr(stable, field) != getattr(candidate, field)
-        for field in ("favorite_genre", "favorite_mood", "preferred_mood_tags", "target_tempo_bpm")
+        for field in ("favorite_genre", "favorite_mood", "favorite_artist", "preferred_mood_tags", "target_tempo_bpm")
     )
     if not ranking_changed and not major_field_changed:
         return stable, f"no_change: low recommendation impact ({shift_summary})"
@@ -622,7 +680,7 @@ def update_profile_at_session_end(
     new_stable = StableUserProfile(
         favorite_genre=candidate.favorite_genre,
         favorite_mood=candidate.favorite_mood,
-        favorite_artist=stable.favorite_artist,        # always preserved
+        favorite_artist=candidate.favorite_artist,     # deterministic only; LLM output is still blocked
         scoring_mode=stable.scoring_mode,              # always preserved
         target_energy=candidate.target_energy,
         target_danceability=candidate.target_danceability,
@@ -638,7 +696,7 @@ def update_profile_at_session_end(
         version=stable.version + 1,
         last_updated=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         update_reason=reason,
-        previous_version=stable.to_dict(),
+        previous_version=_profile_snapshot(stable),
     )
 
     return new_stable, reason

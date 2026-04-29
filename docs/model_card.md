@@ -56,7 +56,7 @@ Fetches recently played (50 tracks), top tracks (150 across short/medium/long te
 Scores every song in the library across 13 weighted dimensions, then applies a diversity re-ranker that penalizes back-to-back same-artist or same-genre picks. After sync, `llm_reeval.py` runs a deterministic analysis of the history to produce bounded candidate changes, then passes them to `gpt-4.1-mini` for refinement before committing a new profile version.
 
 **Data Store**  
-Three files drive all state: `songs.csv` (song library, 228+ tracks), `history.jsonl` (every interaction event, capped at 75), and `user_profile.json` (versioned taste profile). A fourth file, `data/.spotify_imported.json`, prevents top tracks and liked songs from being double-counted across sync runs.
+Three files drive all state: `songs.csv` (the local song library), `history.jsonl` (every interaction event, capped at 75), and `user_profile.json` (versioned taste profile). A fourth file, `data/.spotify_imported.json`, prevents top tracks and liked songs from being double-counted across sync runs.
 
 ---
 
@@ -99,7 +99,7 @@ The profile is a versioned JSON object with 14 fields. Key fields:
 | --- | --- | --- |
 | `favorite_genre` | string | No — LLM-adjustable with evidence gate |
 | `favorite_mood` | string | No — LLM-adjustable with evidence gate |
-| `favorite_artist` | string | **Yes — never modified by LLM** |
+| `favorite_artist` | string | **LLM-protected — deterministic evidence may update it** |
 | `scoring_mode` | string | **Yes — never modified by LLM** |
 | `target_energy`, `target_tempo_bpm`, etc. | float / int | No — bounded ±0.3 per session |
 | `version` | int | **Yes — managed by versioning system only** |
@@ -128,7 +128,7 @@ Each candidate song is scored as a weighted sum across 13 dimensions:
 | Lyrical depth | 0.04 | `1 - abs(song - user)` |
 | Instrumentalness | 0.03 | `1 - abs(song - user)` |
 
-If `favorite_artist` is set, an artist bonus weight of 0.08 is added (redistributed from `popularity` and `instrumentalness`).
+If `favorite_artist` is set, an artist bonus weight of 0.12 is added (redistributed from `popularity` and `instrumentalness`). The artist bonus lifts familiar artists without forcing an artist-only queue.
 
 ### Diversity Re-ranker
 
@@ -159,7 +159,8 @@ Before the LLM is called, a rule-based pass computes bounded candidate changes:
 - **Energy:** if mean energy of completed songs differs from profile target by > 0.05, nudge target by ±0.15
 - **Tempo:** if mean tempo of completed songs differs by > 10 BPM, nudge by ±20 BPM
 - **Mood tags:** collect moods from all `repeat` events, subtract moods of early-skip songs (ratio < 0.3)
-- **Genre/mood change gate:** only opens if the dominant completed genre/mood appears in ≥35% of positive events AND differs from current profile AND has ≥3 skip events on the current value
+- **Artist:** if one non-skipped artist has at least 3 positive events and at least 10% of positive evidence, set `favorite_artist` deterministically
+- **Genre/mood change gate:** opens when completed evidence points to another genre/mood, or when the current genre is repeatedly skipped and there is a completed alternative with at least 2 supporting plays
 
 ### Step 2 — LLM Refinement
 
@@ -176,7 +177,7 @@ The LLM may reduce a proposed delta, veto a genre/mood change if evidence looks 
 
 After the LLM response is parsed, `parse_and_guard()` enforces:
 
-- Protected fields (`favorite_artist`, `scoring_mode`, `version`, `last_updated`, `update_reason`, `previous_version`) are silently dropped
+- Protected fields from raw LLM output (`favorite_artist`, `scoring_mode`, `version`, `last_updated`, `update_reason`, `previous_version`) are silently dropped. `favorite_artist` can still be applied from deterministic candidate evidence.
 - All float fields clamped to [0.0, 1.0]
 - Max delta per session: ±0.3 for float fields, ±30 for tempo
 - Tempo hard bounds: [40, 220] BPM
@@ -196,16 +197,16 @@ A profile update is only saved if it changes the top-3 recommendation list **or*
 
 ### Synthetic Test Harness — 6 / 6 scenarios, 130+ checks passed
 
-`python -m src.evaluate_llm_reliability` runs 5 predefined behavioral scenarios plus a live-data scenario:
+`python -m src.evaluate_llm_reliability` runs 5 predefined behavioral scenarios plus a live-data scenario. If a fresh checkout has no `history.jsonl` events yet, Scenario 6 uses a synthetic fallback so the guardrail contract still remains testable.
 
 | Scenario | Behavioral guarantee tested | Result |
 | --- | --- | --- |
 | 1 — High-energy listener | Energy + tempo nudge upward | PASS 100% |
 | 2 — Heavy genre-skipper | Genre-change gate opens correctly | PASS 100% |
 | 3 — Protected field injection | Guardrail blocks malicious JSON | PASS 100% |
-| 4 — Insufficient history | No update below 5 events | PASS 100% |
+| 4 — Insufficient history | No update below 3 events | PASS 100% |
 | 5 — Repeat signal | Mood tags updated from repeat events | PASS 100% |
-| 6 — Live data + LLM | All guardrails on real history | PASS 100% |
+| 6 — Live data or fallback smoke check | All guardrails on real history, or synthetic fallback when no history exists | PASS 100% |
 
 ### LLM Reliability — 20 / 20 guardrail checks on 75 live events, 15 profile versions
 
@@ -231,7 +232,7 @@ The profile represents one listener. Shared Spotify accounts produce a blended s
 Spotify's rich genre labels (bedroom pop, dark trap, hyperpop) are mapped into 16 internal buckets. Sub-genre nuance is lost, which can cause a "dark trap" track to score as "hip-hop" against a "pop" profile — lower than it should rank.
 
 **LLM genre/mood veto can be over-conservative**  
-The few-shot examples train the LLM to veto weak genre changes. In edge cases where the user is genuinely transitioning tastes (e.g., 40% hip-hop completes, 35% pop), the LLM may require multiple sessions before accepting the change.
+The few-shot examples train the LLM to veto weak genre changes. In edge cases where the user is genuinely transitioning tastes, the deterministic fallback still accepts a completed alternative when the current genre is repeatedly skipped.
 
 **No cold-start recovery**  
 The system defaults to `pop/happy` with neutral numeric targets when no profile or history exists. The first sync can dramatically shift the profile (v1 → v14 in a single session), which can feel jarring if the defaults were far from the user's actual taste.

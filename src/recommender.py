@@ -307,7 +307,7 @@ def _mood_tag_similarity(user_tags: List[str], song_tags: List[str]) -> float:
 def _get_weights(mode: str, user_artist: str) -> Dict[str, float]:
     weights = dict(SCORING_MODES.get(mode, SCORING_MODES["balanced"]))
     if user_artist:
-        weights["artist"] = 0.08
+        weights["artist"] = 0.12
         weights["popularity"] = max(0.0, weights["popularity"] - 0.04)
         weights["instrumentalness"] = max(0.0, weights["instrumentalness"] - 0.04)
     return weights
@@ -418,12 +418,33 @@ def _apply_diversity_penalty(song: Dict, selected_songs: List[Dict]) -> Tuple[fl
     return penalty, reasons
 
 
+def _history_penalty(song: Dict, user_prefs: Dict) -> Tuple[float, List[str]]:
+    penalties = user_prefs.get("song_penalties", {}) or {}
+    song_id = song.get("id", "")
+    raw_penalty = penalties.get(song_id, penalties.get(str(song_id), 0.0))
+    penalty = max(0.0, min(0.75, float(raw_penalty or 0.0)))
+    if penalty <= 0:
+        return 0.0, []
+    return penalty, [f"recent skip penalty (-{penalty:.2f})"]
+
+
 def recommend_songs(
     user_prefs: Dict, songs: List[Dict], k: int = 5, mode: str = "balanced"
 ) -> List[Tuple[Dict, float, str]]:
+    candidate_songs = songs
+    preferred_genre = _normalize_text(user_prefs.get("genre", ""))
+    exact_genre_matches = [
+        song for song in candidate_songs
+        if preferred_genre and _normalize_text(song.get("genre", "")) == preferred_genre
+    ]
+    candidate_songs = exact_genre_matches if len(exact_genre_matches) >= k else candidate_songs
+
     scored = []
-    for song in songs:
+    for song in candidate_songs:
         score, reasons = score_song(user_prefs, song, mode=mode)
+        penalty, penalty_reasons = _history_penalty(song, user_prefs)
+        score = max(0.0, score - penalty)
+        reasons = reasons + penalty_reasons
         scored.append({"song": song, "base_score": score, "reasons": reasons})
 
     scored.sort(key=lambda item: item["base_score"], reverse=True)

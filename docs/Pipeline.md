@@ -24,7 +24,7 @@ The v2 system runs two interlocking loops:
 | `InteractionEvent` | Immutable per-song interaction record | Yes — `data/history.jsonl` (rolling 75) |
 
 ### StableUserProfile
-Long-term taste defaults. Loaded at session start; written at session end only if evidence thresholds are met. Carries version metadata and a `previous_version` snapshot for rollback.
+Long-term taste defaults. Loaded at session start; written at session end only if evidence thresholds are met. Carries version metadata and a shallow `previous_version` snapshot for rollback context.
 
 ### SessionState
 Holds ephemeral numeric nudges (`energy_nudge`, `danceability_nudge`, `valence_nudge`) applied on top of `StableUserProfile` during the current session. Dies when the session ends — never persisted.
@@ -88,7 +88,7 @@ Runs once when the user quits. Updates `StableUserProfile` using a hybrid determ
 ```
 
 ### Step 1 — Minimum history gate
-If fewer than 5 events in history → `no_change`, skip everything.
+If fewer than 3 events in history → `no_change`, skip everything.
 
 ### Step 2 — Deterministic aggregation
 Computes candidate field changes purely from statistics:
@@ -99,7 +99,7 @@ Computes candidate field changes purely from statistics:
 Returns a `candidate_changes` dict (field → new_value). Fields with insufficient evidence are omitted.
 
 ### Step 3 — LLM advisory pass
-Sends the current profile, `candidate_changes`, and up to 75 sanitized history events to `gpt-4o-mini`. The LLM may **refine or remove** proposed changes but may **not invent** new ones or touch protected fields. If `OPENAI_API_KEY` is not set, this step is skipped and deterministic changes are applied directly.
+Sends the current profile, `candidate_changes`, and selected sanitized history events to `gpt-4.1-mini`. The LLM may **refine or remove** proposed changes but may **not invent** new ones or touch protected fields. If `OPENAI_API_KEY` is not set, this step is skipped and deterministic changes are applied directly.
 
 ### Step 4 — Post-parse guardrails
 All LLM output is validated before acceptance:
@@ -110,7 +110,7 @@ All LLM output is validated before acceptance:
 | Max delta | `abs(new - old) ≤ 0.3` per numeric field; clip to boundary |
 | Genre/mood gate | Code re-checks the ratio threshold; overrides if not met |
 | Enum validation | `scoring_mode` must be one of 4 valid values |
-| Protected fields | `favorite_artist`, `scoring_mode`, `version`, `last_updated`, `update_reason`, `previous_version` — never accepted from LLM |
+| Protected fields | `favorite_artist`, `scoring_mode`, `version`, `last_updated`, `update_reason`, `previous_version` — never accepted from raw LLM output. `favorite_artist` may still be set by deterministic evidence. |
 
 ### Step 5 — No-change check
 If no fields differ after guardrails → `no_change` is returned. `user_profile.json` is **not** written. The prior profile is preserved intact.
@@ -120,7 +120,7 @@ Every saved profile carries:
 - `version`: incremented by 1
 - `last_updated`: ISO 8601 UTC timestamp
 - `update_reason`: human-readable summary of changed fields and update method
-- `previous_version`: full snapshot of the prior profile for rollback
+- `previous_version`: shallow snapshot of the prior profile for rollback context
 
 ---
 
@@ -135,11 +135,12 @@ Every saved profile carries:
 
 ```
 src/
+  agentic_flow.py  — startup workflow orchestration (Spotify sync → profile update → versioning)
   models.py        — StableUserProfile, SessionState, InteractionEvent dataclasses
   player.py        — NowPlayingUI, KeyboardListener, merge_prefs, playback loop
   llm_reeval.py    — history I/O, deterministic_update, LLM call, parse_and_guard
   recommender.py   — unchanged scoring engine (recommend_songs, score_song)
-  main.py          — CLI entrypoint; --now-playing flag routes to player.py
+  main.py          — CLI entrypoint; delegates startup flow to agentic_flow.py
 
 data/
   songs.csv            — 80-song catalog

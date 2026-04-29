@@ -4,6 +4,7 @@ from src.recommender import (
     UserProfile,
     genre_similarity,
     mood_similarity,
+    recommend_songs,
     score_song,
 )
 
@@ -183,3 +184,172 @@ def test_recommender_accepts_csv_path():
 
     assert rec.songs
     assert isinstance(rec.songs[0], Song)
+
+
+def test_recommend_songs_penalizes_recently_skipped_specific_song():
+    songs = [
+        {
+            "id": 1,
+            "title": "Perfect Match But Skipped",
+            "artist": "Test Artist",
+            "genre": "pop",
+            "mood": "happy",
+            "energy": 0.8,
+            "tempo_bpm": 120,
+            "valence": 0.9,
+            "danceability": 0.8,
+            "acousticness": 0.2,
+        },
+        {
+            "id": 2,
+            "title": "Slightly Weaker Fresh Song",
+            "artist": "Other Artist",
+            "genre": "pop",
+            "mood": "happy",
+            "energy": 0.72,
+            "tempo_bpm": 118,
+            "valence": 0.82,
+            "danceability": 0.72,
+            "acousticness": 0.25,
+        },
+    ]
+    user_prefs = {
+        "genre": "pop",
+        "mood": "happy",
+        "energy": 0.8,
+        "tempo_bpm": 120,
+        "danceability": 0.8,
+        "valence": 0.9,
+        "likes_acoustic": False,
+        "song_penalties": {"1": 0.75},
+    }
+
+    skipped_score, _ = score_song(user_prefs, songs[0])
+    ranked = recommend_songs(user_prefs, songs, k=2)
+
+    assert skipped_score > 0
+    assert ranked[0][0]["id"] == 2
+    assert "recent skip penalty" in ranked[1][2]
+
+
+def test_recommend_songs_prefers_exact_genre_pool_when_enough_matches():
+    songs = [
+        {
+            "id": 1,
+            "title": "Hip Hop One",
+            "artist": "A",
+            "genre": "hip-hop",
+            "mood": "intense",
+            "energy": 0.8,
+            "tempo_bpm": 95,
+            "valence": 0.4,
+            "danceability": 0.7,
+            "acousticness": 0.1,
+        },
+        {
+            "id": 2,
+            "title": "Hip Hop Two",
+            "artist": "B",
+            "genre": "hip-hop",
+            "mood": "sad",
+            "energy": 0.7,
+            "tempo_bpm": 100,
+            "valence": 0.4,
+            "danceability": 0.6,
+            "acousticness": 0.2,
+        },
+        {
+            "id": 3,
+            "title": "Hip Hop Three",
+            "artist": "C",
+            "genre": "hip-hop",
+            "mood": "motivated",
+            "energy": 0.9,
+            "tempo_bpm": 110,
+            "valence": 0.5,
+            "danceability": 0.8,
+            "acousticness": 0.05,
+        },
+        {
+            "id": 4,
+            "title": "Perfect Mood Lofi",
+            "artist": "D",
+            "genre": "lofi",
+            "mood": "sad",
+            "energy": 0.75,
+            "tempo_bpm": 100,
+            "valence": 0.4,
+            "danceability": 0.7,
+            "acousticness": 0.2,
+        },
+    ]
+    user_prefs = {
+        "genre": "hip-hop",
+        "mood": "sad",
+        "energy": 0.75,
+        "tempo_bpm": 100,
+        "danceability": 0.7,
+        "valence": 0.4,
+        "likes_acoustic": False,
+    }
+
+    ranked = recommend_songs(user_prefs, songs, k=3)
+
+    assert [item[0]["genre"] for item in ranked] == ["hip-hop", "hip-hop", "hip-hop"]
+
+
+def test_recommend_songs_boosts_artist_without_forcing_artist_only_queue():
+    songs = [
+        {
+            "id": 1,
+            "title": "Eminem One",
+            "artist": "Eminem",
+            "genre": "hip-hop",
+            "mood": "intense",
+            "energy": 0.85,
+            "tempo_bpm": 90,
+            "valence": 0.4,
+            "danceability": 0.7,
+            "acousticness": 0.05,
+        },
+        {
+            "id": 2,
+            "title": "Eminem Two",
+            "artist": "Eminem",
+            "genre": "hip-hop",
+            "mood": "motivated",
+            "energy": 0.9,
+            "tempo_bpm": 88,
+            "valence": 0.5,
+            "danceability": 0.75,
+            "acousticness": 0.02,
+        },
+        {
+            "id": 3,
+            "title": "Perfect Non Artist",
+            "artist": "Other Artist",
+            "genre": "hip-hop",
+            "mood": "sad",
+            "energy": 0.75,
+            "tempo_bpm": 100,
+            "valence": 0.4,
+            "danceability": 0.7,
+            "acousticness": 0.2,
+        },
+    ]
+    user_prefs = {
+        "genre": "hip-hop",
+        "artist": "Eminem",
+        "mood": "sad",
+        "energy": 0.75,
+        "tempo_bpm": 100,
+        "danceability": 0.7,
+        "valence": 0.4,
+        "likes_acoustic": False,
+    }
+
+    ranked = recommend_songs(user_prefs, songs, k=2)
+
+    assert ranked[0][0]["artist"] == "Other Artist"
+    assert ranked[1][0]["artist"] == "Eminem"
+    assert "artist match" in ranked[1][2]

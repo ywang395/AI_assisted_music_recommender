@@ -7,6 +7,7 @@ import shutil
 import sys
 import time
 import threading
+import textwrap
 from datetime import datetime, timezone
 from typing import List, Optional, Tuple
 from uuid import uuid4
@@ -55,6 +56,10 @@ def merge_prefs(stable: StableUserProfile, session: SessionState) -> dict:
         "live_energy":      stable.target_live_energy,
         "lyrical_depth":    stable.target_lyrical_depth,
         "instrumentalness": stable.target_instrumentalness,
+        "song_penalties": {
+            str(song_id): min(0.75, 0.55 + (0.1 * session.recent_skips.count(song_id)))
+            for song_id in session.recent_skips
+        },
     }
 
 
@@ -249,6 +254,13 @@ class NowPlayingUI:
         sys.stdout.flush()
         self._last_song_id = None
 
+    def show_wrapped_message(self, msg: str) -> None:
+        w = self._width()
+        for line in textwrap.wrap(msg, width=max(24, w - 2)) or [""]:
+            sys.stdout.write("  " + line + "\r\n")
+        sys.stdout.flush()
+        self._last_song_id = None
+
     def cleanup(self) -> None:
         sys.stdout.write("\r\n")
         sys.stdout.flush()
@@ -338,18 +350,22 @@ def run_now_playing(
         if new_stable.version != stable.version:
             save_profile(new_stable, "data/user_profile.json")
             msg = f"{reason_prefix} Profile v{new_stable.version} saved. {reason}"
+            status_msg = f"{reason_prefix} Profile v{new_stable.version} saved. See update reason below."
         else:
             msg = f"{reason_prefix} No profile changes saved. {reason}"
+            status_msg = f"{reason_prefix} No profile changes saved. See reason below."
 
         ui.show_song(
             song,
             score,
             "",
-            status_msg=msg,
+            status_msg=status_msg,
             profile_version=new_stable.version,
             recompute_count=session.recompute_count,
         )
         ui.update_progress(elapsed, total)
+        sys.stdout.write("\r\n")
+        ui.show_wrapped_message(msg)
         time.sleep(2)
         _shutdown_terminal()
 
@@ -406,11 +422,9 @@ def run_now_playing(
                     session.skips_since_last_recompute += 1
                     session.recent_skips.append(song["id"])
                     listener.clear_pending()
-
-                    if session.skips_since_last_recompute >= 2:
-                        queue_list = get_fresh_queue(songs, stable, session)
-                        session.skips_since_last_recompute = 0
-                        session.recompute_count += 1
+                    queue_list = get_fresh_queue(songs, stable, session)
+                    session.skips_since_last_recompute = 0
+                    session.recompute_count += 1
                     break
 
                 elif key == "r":

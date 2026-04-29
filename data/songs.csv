@@ -261,3 +261,15 @@ id,title,artist,genre,mood,energy,tempo_bpm,valence,danceability,acousticness,po
 260,真っ白,Fujii Kaze,pop,chill,0.65,110,0.6,0.65,0.2,50,2020,laid-back|smooth|melodic,0.65,0.65,0.0,57UKjaYzGB8yK4EQWAeksH
 261,風よ,Fujii Kaze,pop,chill,0.65,110,0.6,0.65,0.2,50,2020,laid-back|smooth|melodic,0.65,0.65,0.0,77NDAeUdOg9ODtEhbZjAb4
 262,Shiver,John Summit,electronic,energetic,0.85,128,0.7,0.8,0.05,50,2020,upbeat|danceable|dynamic,0.85,0.7,0.0,32VIrOsJmwvqRm4rWFBCsi
+263,Don't Wanna Know (feat. Kendrick Lamar),Maroon 5,pop,happy,0.65,98,0.75,0.78,0.1,50,2010,upbeat|catchy|fun,0.6,0.55,0.0,5o3GnrcFtvkdf3zFznuSbA
+264,So Far Away (feat. Jamie Scott & Romy Dya),Martin Garrix,electronic,joyful,0.7,120,0.8,0.85,0.05,50,2010,uplifting|melodic|danceable,0.65,0.6,0.02,0OlnLZY4cmQzT6ZGttvWBM
+265,Without You (feat. Sandro Cavazza),Avicii,electronic,energetic,0.8,128,0.7,0.82,0.03,50,2010,powerful|emotional|anthemic,0.75,0.65,0.01,6Pgkp4qUoTmJIPn7ReaGxL
+266,White America,Eminem,hip-hop,intense,0.9,88,0.3,0.6,0.02,50,2000,aggressive|provocative|raw,0.85,0.9,0.0,15qrWkkYCfmtu1uRpGf48L
+267,Love The Way You Lie,Eminem,hip-hop,intense,0.85,87,0.65,0.7,0.05,50,2010,dramatic|emotional|powerful,0.8,0.9,0.0,15JINEqzVMv3SvJTAXAKED
+268,Homicide (feat. Eminem),Logic,hip-hop,intense,0.85,160,0.45,0.7,0.05,50,2010,aggressive|dynamic|powerful,0.8,0.75,0.0,7M2tXmeS15NAzEn7ABFeBg
+269,The Way I Am,Eminem,hip-hop,motivated,0.85,90,0.6,0.75,0.05,50,2000,confident|assertive|powerful,0.8,0.9,0.0,23wfXwnsPZYe5A1xXRHb3J
+270,Gnat,Eminem,hip-hop,intense,0.9,85,0.5,0.7,0.02,50,2020,aggressive|dynamic|thought-provoking,0.85,0.95,0.0,6cS9PmLky2NhLOhpIsUlow
+271,In Too Deep,Eminem,hip-hop,intense,0.75,90,0.55,0.65,0.05,50,2020,driven|powerful|emotional,0.7,0.8,0.0,7Dj2wqPYXfSRFwa6qyOztr
+272,Forgot About Dre,Dr. Dre,hip-hop,energetic,0.85,95,0.6,0.75,0.05,50,1990,powerful|confident|assertive,0.8,0.7,0.0,7iXF2W9vKmDoGAhlHdpyIa
+273,Mockingbird,Eminem,hip-hop,sad,0.65,85,0.45,0.55,0.3,50,2000,emotional|reflective|heartfelt,0.4,0.8,0.05,561jH07mF1jHuk7KlaeF0s
+274,Guilty Conscience,Eminem,hip-hop,intense,0.7,90,0.5,0.6,0.1,50,1990,dramatic|conflict|narrative,0.55,0.75,0.0,6da04YB906XonC6IQNC44u

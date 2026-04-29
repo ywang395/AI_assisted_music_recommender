@@ -2,8 +2,10 @@
 
 A personalized music recommendation system that learns your taste from real Spotify listening data and adapts its recommendations over time using an LLM-driven profile.
 
-**Video walkthrough:** [Loom link — add after recording]  
-**GitHub:** [your-repo-url]
+**Video walkthrough:** [Loom link — add after recording]
+**GitHub:** https://github.com/ywang395/AI_assisted_music_recommender
+
+**Presentation prep:** [5-7 minute outline + Loom script](docs/presentation_outline.md)
 
 ---
 
@@ -48,7 +50,7 @@ flowchart TD
     end
 
     subgraph Store["Data Store"]
-        CSV[("songs.csv<br/>216 tracks")]
+        CSV[("songs.csv<br/>local track library")]
         HIST[("history.jsonl<br/>skip · complete · repeat events")]
         PROF[("user_profile.json<br/>versioned taste profile")]
         REG[(".spotify_imported.json<br/>import dedup registry")]
@@ -88,7 +90,7 @@ The system has four layers:
 
 **Data Store** — Three files drive all state: `songs.csv` (the song library), `history.jsonl` (every interaction event), and `user_profile.json` (the evolving taste profile). A fourth file, `.spotify_imported.json`, tracks which Spotify track IDs have already been imported so top tracks and liked songs are never double-counted.
 
-**Core Engine** — `recommender.py` scores every candidate song across 13 weighted dimensions (genre, mood, energy, tempo, danceability, valence, acousticness, popularity, release decade, mood tags, live energy, lyrical depth, instrumentalness) with a diversity re-ranker that penalizes back-to-back same-artist or same-genre picks. `llm_reeval.py` runs after each session: it first computes deterministic candidate changes from listening statistics, then passes those candidates to GPT-4.1-mini to refine or veto them.
+**Core Engine** — `recommender.py` scores every candidate song across 13 weighted dimensions (genre, mood, energy, tempo, danceability, valence, acousticness, popularity, release decade, mood tags, live energy, lyrical depth, instrumentalness) with a diversity re-ranker that penalizes back-to-back same-artist or same-genre picks. `llm_reeval.py` runs after each session: it first computes deterministic candidate changes from listening statistics, including artist evidence, then passes bounded candidates to GPT-4.1-mini to refine or veto them.
 
 **Human in the Loop** — The terminal player captures every `skip`, `repeat`, and `complete` event in real time. Users can also run `--sync-profile-preview` to review what the LLM wants to change before committing.
 
@@ -223,7 +225,7 @@ The system only has one user's data. Collaborative filtering needs many users to
 Spotify restricted its `/audio-features` endpoint to apps created before November 2024. Rather than abandon real track data, using `gpt-4o-mini` to estimate energy, valence, danceability, etc. from track name and artist costs roughly $0.002 per 50 songs and produces estimates consistent enough for relative ranking.
 
 **Why a separate deterministic pass before the LLM**
-Letting the LLM change the profile freely risks arbitrary drift. The deterministic layer (`llm_reeval.py`) computes bounded candidate changes from actual statistics (mean energy of completed songs, genre frequency in skips vs. completes). The LLM only refines those candidates — it cannot invent new fields or override protected ones like `favorite_artist` or `scoring_mode`.
+Letting the LLM change the profile freely risks arbitrary drift. The deterministic layer (`llm_reeval.py`) computes bounded candidate changes from actual statistics (mean energy of completed songs, genre frequency in skips vs. completes, and repeated artist evidence). The LLM only refines those candidates — it cannot invent new fields or override protected fields like `scoring_mode`. `favorite_artist` can change only through deterministic listening evidence, not from raw LLM output.
 
 **Why three Spotify sources instead of just recently played**
 Recently played skews toward the last few hours. Top tracks (short/medium/long term) give a more stable signal. Liked songs are written as `repeat` events — the strongest positive signal — because hearting a song is a deliberate act.
@@ -246,7 +248,7 @@ The primary reliability mechanism is a guardrail layer built directly into the m
 | Max-delta cap | `parse_and_guard()` | No float field moves more than `±0.3` per session; tempo moves at most `±30` BPM |
 | LLM fallback | `call_llm_reeval()` | If OpenAI is unavailable or returns an error, the deterministic candidate is applied instead — the profile still improves |
 | Impact gate | `update_profile_at_session_end()` | The updated profile is only saved if it changes the top-3 recommendation list or modifies a major field — minor noise is discarded |
-| Minimum evidence gate | `update_profile_at_session_end()` | No update fires with fewer than 5 interaction events |
+| Minimum evidence gate | `update_profile_at_session_end()` | No update fires with fewer than 3 interaction events |
 
 **Why this counts as a reliability feature, not just error handling:** these guardrails change the system's behavior on every run. A LLM response that passes `json.loads` but violates a constraint is silently corrected rather than accepted or rejected outright. The system degrades gracefully under bad LLM output instead of crashing or drifting.
 
@@ -275,16 +277,16 @@ The primary reliability mechanism is a guardrail layer built directly into the m
 
 ### Evaluation Harness — 6 / 6 scenarios, 130+ checks passed
 
-`python -m src.evaluate_llm_reliability` verifies the integrated guardrails behave correctly across predefined scenarios. Each scenario builds a synthetic history, runs the full update pipeline, and checks both the guardrail contracts and the expected behavioral outcome.
+`python -m src.evaluate_llm_reliability` verifies the integrated guardrails behave correctly across predefined scenarios. Each scenario builds a synthetic history, runs the full update pipeline, and checks both the guardrail contracts and the expected behavioral outcome. Scenario 6 uses real `history.jsonl` when available and falls back to a synthetic smoke check in a fresh checkout with no history.
 
 | Scenario | What it verifies | Result |
 | --- | --- | --- |
 | 1 — High-energy listener | Energy + tempo nudge upward when all completes are high-energy | PASS 100% |
-| 2 — Heavy genre-skipper | Genre-change gate opens after ≥35% skips on current genre | PASS 100% |
+| 2 — Heavy genre-skipper | Genre-change gate opens after repeated skips on current genre | PASS 100% |
 | 3 — Protected field injection | `favorite_artist`, `scoring_mode`, `version` survive a malicious LLM JSON | PASS 100% |
 | 4 — Insufficient history | No update fires below the minimum event threshold | PASS 100% |
 | 5 — Repeat signal | `preferred_mood_tags` updated after 8 repeat events on "chill" songs | PASS 100% |
-| 6 — Live data (+ LLM) | All guardrails hold on real `history.jsonl` with an actual OpenAI call | PASS 100% |
+| 6 — Live data or fallback smoke check | All guardrails hold on real `history.jsonl`; fresh checkouts use a synthetic fallback | PASS 100% |
 
 ---
 
@@ -363,11 +365,11 @@ This is specialization via prompt engineering (in-context few-shot fine-tuning).
 
 ### Agentic Workflow Enhancement (+2)
 
-The startup pipeline now emits observable numbered step logs with timing at every stage. Instead of a flat block of `[sync]` lines, the output shows a 4-stage pipeline (A→D) wrapping the 8-step Spotify sync:
+The startup agentic flow now lives in `src/agentic_flow.py` and emits observable numbered step logs with timing at every stage. Instead of a flat block of `[sync]` lines, the output shows a 4-stage pipeline (A→D) wrapping the 8-step Spotify sync:
 
 ```text
 ================================================================
-  PIPELINE — Startup Sync
+  PIPELINE - Startup Agentic Flow
 ================================================================
 
 [A] Retrieving listening data from Spotify (3 sources)...
@@ -380,14 +382,14 @@ The startup pipeline now emits observable numbered step logs with timing at ever
          → 50 tracks retrieved
   [step 5/8] Detect new tracks + estimate audio features via OpenAI ... done (8231ms)
          → 12 new tracks found
-         → songs.csv updated: 228 total (+12)
+         → songs.csv updated: library total increased (+12)
   [step 6/8] Skip inference from recently-played timestamps ... done (1ms)
          → 8 events: 7 complete, 1 skip
   [step 7/8] Build top-track + liked-song history events ... done (0ms)
          → 0 top-track events, 0 liked events
   [step 8/8] Append new events to history.jsonl ... done (2ms)
          → 8 events written
-    → 228 songs in library | 11.2s total
+    → songs loaded from library | 11.2s total
 
 [B] Deterministic analysis of listening history...
     → 75 events analysed | 2 candidate changes | 1ms
@@ -430,6 +432,7 @@ The liked songs source alone contributed 50 high-confidence `repeat` events — 
 ```text
 ├── src/
 │   ├── main.py              # CLI entry point
+│   ├── agentic_flow.py      # Startup agentic workflow orchestration
 │   ├── config.py            # Centralized data paths
 │   ├── models.py            # Data models (Song, UserProfile, InteractionEvent)
 │   ├── recommender.py       # Weighted scoring engine + diversity re-ranker
@@ -440,7 +443,7 @@ The liked songs source alone contributed 50 high-confidence `repeat` events — 
 │   ├── spotify_utils.py     # Shared Spotify + OpenAI utilities
 │   └── evaluate_llm_reliability.py  # Reliability test harness
 ├── data/
-│   ├── songs.csv            # Song library (216 tracks)
+│   ├── songs.csv            # Local song library
 │   ├── history.jsonl        # Interaction event log
 │   └── user_profile.json    # Versioned taste profile
 ├── docs/
