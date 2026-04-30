@@ -2,7 +2,7 @@
 
 A personalized music recommendation system that learns your taste from real Spotify listening data and adapts its recommendations over time using an LLM-driven profile.
 
-**Video walkthrough:** [Loom link — add after recording]
+**Video walkthrough:** [Watch on Loom](https://www.loom.com/share/dbb4b2cbc05f4d76a2be1f775ad8bc92)
 **GitHub:** https://github.com/ywang395/AI_assisted_music_recommender
 
 **Presentation prep:** [5-7 minute outline + Loom script](docs/presentation_outline.md)

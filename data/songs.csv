@@ -273,3 +273,9 @@ id,title,artist,genre,mood,energy,tempo_bpm,valence,danceability,acousticness,po
 272,Forgot About Dre,Dr. Dre,hip-hop,energetic,0.85,95,0.6,0.75,0.05,50,1990,powerful|confident|assertive,0.8,0.7,0.0,7iXF2W9vKmDoGAhlHdpyIa
 273,Mockingbird,Eminem,hip-hop,sad,0.65,85,0.45,0.55,0.3,50,2000,emotional|reflective|heartfelt,0.4,0.8,0.05,561jH07mF1jHuk7KlaeF0s
 274,Guilty Conscience,Eminem,hip-hop,intense,0.7,90,0.5,0.6,0.1,50,1990,dramatic|conflict|narrative,0.55,0.75,0.0,6da04YB906XonC6IQNC44u
+275,Public Service Announcement,Eminem,hip-hop,intense,0.85,90,0.6,0.75,0.05,50,1990,powerful|assertive|bold,0.8,0.9,0.0,59z8uxWZVFpL2LfZ5C9AzY
+276,Sing For The Moment,Eminem,hip-hop,motivated,0.78,85,0.65,0.7,0.1,50,2000,inspirational|uplifting|reflective,0.75,0.88,0.0,3CpoeW0cZSDzIRv5z34F87
+277,Stan,Eminem,hip-hop,sad,0.65,87,0.4,0.55,0.2,50,2000,emotional|storytelling|dark,0.6,0.95,0.0,3UmaczJpikHgJFyBTAJVoz
+278,Everybody’s Looking At Me,Eminem,hip-hop,moody,0.7,92,0.5,0.65,0.15,50,2020,self-reflective|conflicted|introspective,0.7,0.8,0.0,4yYI0Cly9B2p8XbNxfNCRy
+279,Business,Eminem,hip-hop,energetic,0.9,100,0.55,0.8,0.05,50,2000,confident|driving|dynamic,0.85,0.75,0.0,0x60P5taxdI5pcGbqbap6S
+280,Darkness,Eminem,hip-hop,melancholic,0.5,80,0.3,0.4,0.25,50,2020,heavy|thoughtful|serious,0.5,0.92,0.0,5SiZJoLXp3WOl3J4C8IK0d
