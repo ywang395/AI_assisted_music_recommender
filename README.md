@@ -30,8 +30,9 @@ The result is a recommender that improves with every listening session — on Sp
 
 ---
 
-## System Architecture
+# System Architecture
 
+```mermaid
 flowchart TD
     subgraph Spotify["Spotify API OAuth"]
         SP1["Recently Played<br/>50 tracks + timestamps"]
@@ -77,10 +78,10 @@ flowchart TD
     PROF --> REC
     REC --> PLAYER
     PLAYER <--> HUMAN
-    HUMAN -- "skip / repeat / complete" --> HIST
+    HUMAN -->|skip / repeat / complete| HIST
     REG --> NEW
     NEW --> REG
----
+```
 
 ## Architecture Overview
 

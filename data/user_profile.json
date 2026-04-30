@@ -3,7 +3,7 @@
   "favorite_mood": "sad",
   "favorite_artist": "X-Boxin",
   "scoring_mode": "balanced",
-  "target_energy": 0.75,
+  "target_energy": 0.65,
   "target_danceability": 0.1,
   "target_valence": 0.1,
   "target_live_energy": 0.5,
@@ -16,15 +16,15 @@
   "preferred_mood_tags": [
     "sad"
   ],
-  "version": 8,
-  "last_updated": "2026-04-30T00:53:15Z",
-  "update_reason": "hybrid (deterministic + OpenAI) \u2014 target_energy: 0.6\u21920.75, favorite_genre: 'pop'\u2192'hip-hop' | top3 changed: Hurt -> Hurt (feat. Jessica Parry)",
+  "version": 9,
+  "last_updated": "2026-04-30T01:16:46Z",
+  "update_reason": "hybrid (deterministic + OpenAI) \u2014 target_energy: 0.75\u21920.65, favorite_genre: 'pop'\u2192'hip-hop' | top3 changed: Hurt -> Hurt (feat. Jessica Parry)",
   "previous_version": {
     "favorite_genre": "pop",
     "favorite_mood": "sad",
     "favorite_artist": "X-Boxin",
     "scoring_mode": "balanced",
-    "target_energy": 0.6,
+    "target_energy": 0.75,
     "target_danceability": 0.1,
     "target_valence": 0.1,
     "target_live_energy": 0.5,
@@ -37,9 +37,9 @@
     "preferred_mood_tags": [
       "sad"
     ],
-    "version": 7,
-    "last_updated": "2026-04-30T00:49:54Z",
-    "update_reason": "hybrid (deterministic + OpenAI) \u2014 target_energy: 0.75\u21920.6, favorite_genre: 'pop'\u2192'hip-hop' | top3 changed: Hurt -> Hurt (feat. Jessica Parry)",
+    "version": 8,
+    "last_updated": "2026-04-30T00:53:15Z",
+    "update_reason": "hybrid (deterministic + OpenAI) \u2014 target_energy: 0.6\u21920.75, favorite_genre: 'pop'\u2192'hip-hop' | top3 changed: Hurt -> Hurt (feat. Jessica Parry)",
     "previous_version": {}
   }
 }
